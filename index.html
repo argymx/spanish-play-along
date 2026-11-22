@@ -693,7 +693,12 @@ function loadVoices(){
   const euro = (S.voice.lang||"").toLowerCase().replace("_","-") === "es-es";
   $("b-voice").textContent = "Voice: " + S.voice.name;
   $("b-voice").className = euro ? "badge" : "badge warn";
-  if (!euro){
+  if (NOVELTY.test(S.voice.name)){
+    $("b-voice").className = "badge warn";
+    flash("warn","<b>The only Spanish voices this device offers are novelty voices</b> (" + S.voice.name + " and similar), which are useless as a pronunciation model. " +
+      "This is common on iPads and iPhones, where the browser is only shown Apple's Eloquence voice set rather than the proper system voices. " +
+      "Use the drills and the gaps by all means, but attach a real recording as the model from a phrase's <b>⋯</b> menu before trusting what you hear. On a computer, Mónica is the voice to look for under More options.");
+  } else if (!euro){
     flash("warn","<b>The chosen voice is not European Spanish.</b> " + S.voice.name + " will give you seseo, so c and z will sound like s rather than the th your exam expects. Pick an es-ES voice under More options if one is listed, or install one.");
   }
 }
@@ -715,22 +720,50 @@ function flash(kind, html){
   $("flash").innerHTML = '<div class="flash ' + kind + '">' + html + "</div>";
 }
 
-/* speak: resolves with measured duration in ms */
+/* Rough spoken length, used when the browser will not tell us. */
+function estimateMs(text, r){
+  const words = (text || "").split(/\s+/).filter(Boolean).length;
+  return Math.max(1200, (words / (2.6 * Math.max(0.3, r))) * 1000);
+}
+
+/* speak: resolves with the measured duration in ms.
+   Safari drops onstart/onend for an utterance queued straight after
+   cancel(), so only cancel when something is actually speaking, leave a
+   beat afterwards, and never trust "not speaking" before onstart lands. */
 function speak(text, r){
   return new Promise(res => {
     if (!("speechSynthesis" in window) || !S.voice){ res(0); return; }
-    try { speechSynthesis.cancel(); } catch(e){}
-    const u = new SpeechSynthesisUtterance(text);
-    u.voice = S.voice; u.lang = S.voice.lang || "es-ES"; u.rate = r; u.pitch = 1;
-    const t0 = performance.now();
-    let done = false;
-    const fin = () => { if (done) return; done = true; clearInterval(w); res(Math.max(300, performance.now()-t0)); };
-    u.onend = fin; u.onerror = fin;
-    const w = setInterval(() => {
-      if (!speechSynthesis.speaking && !speechSynthesis.pending) fin();
-      if (performance.now()-t0 > 30000) fin();
-    }, 140);
-    speechSynthesis.speak(u);
+    let cancelled = false;
+    try {
+      if (speechSynthesis.speaking || speechSynthesis.pending){ speechSynthesis.cancel(); cancelled = true; }
+    } catch(e){}
+
+    setTimeout(() => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.voice = S.voice; u.lang = S.voice.lang || "es-ES"; u.rate = r; u.pitch = 1;
+      const t0 = performance.now();
+      let done = false, started = false;
+      const fin = () => {
+        if (done) return;
+        done = true; clearInterval(w);
+        res(Math.max(600, performance.now() - t0));
+      };
+      u.onstart = () => { started = true; };
+      u.onend = fin;
+      u.onerror = fin;
+      const w = setInterval(() => {
+        const idle = !speechSynthesis.speaking && !speechSynthesis.pending;
+        if (started && idle) fin();
+        // onstart never arrived: fall back to an estimate rather than
+        // cutting the gap to nothing.
+        if (!started && performance.now() - t0 > 2500){
+          const est = estimateMs(text, r);
+          if (performance.now() - t0 >= est || idle){ done = true; clearInterval(w); res(est); }
+        }
+        if (performance.now() - t0 > 40000) fin();
+      }, 120);
+      try { speechSynthesis.speak(u); } catch(e){ fin(); }
+    }, cancelled ? 90 : 0);
   });
 }
 function playFile(url, r){
@@ -758,6 +791,10 @@ function micBadge(){
   else if (S.micOk === false){ b.textContent = "Microphone blocked"; b.className = "badge warn"; }
   else { b.textContent = "Microphone not yet allowed"; b.className = "badge off"; }
 }
+/* iPad reports itself as a Mac, hence the touch point test. */
+const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
 /* Where are we running? This decides which remedy to offer. */
 function env(){
   const framed = (() => { try { return window.self !== window.top; } catch(e){ return true; } })();
@@ -773,6 +810,12 @@ function env(){
 /* Explain a getUserMedia failure in terms of the actual cause. */
 function micRemedy(errName){
   const e = env();
+  if (errName === "ios")
+    return "<b>On an iPhone or iPad, recording and the model voice cannot be used together.</b> " +
+      "There is a long standing fault in Safari's audio handling on iOS: once the page speaks, the microphone track is silently muted and nothing in the page can unmute it. " +
+      "Every browser on iOS uses Safari's engine underneath, so switching to Chrome or Firefox on the same device changes nothing." +
+      "<br><br><b>On an iPad or iPhone, use it this way:</b> listen, repeat into the gaps out loud, and use the drills. That is most of the value and it all works. " +
+      "For record and compare, use a computer or an Android phone, or record in the Voice Memos app and attach the clip from a phrase's <b>⋯</b> menu, which works fine here.";
   const serve = "<b>The fix that always works:</b> serve the file from a local web server, which browsers treat as a proper secure origin. " +
     "Open Terminal, then:<br><code style=\"display:block;background:#f1efe9;padding:8px 10px;border-radius:7px;margin:7px 0;font-size:12.5px\">" +
     "cd ~/Downloads<br>python3 -m http.server 8765</code>" +
@@ -829,6 +872,10 @@ async function ensureMic(){
     const t = S.stream.getAudioTracks()[0];
     if (t && t.readyState === "live") return true;
     S.stream = null;   // track died; ask again
+  }
+  if (IS_IOS){
+    S.micOk = false; S.micErr = "ios"; micBadge(); micBlockedNotice("ios");
+    return false;
   }
   // Pre-flight. A browser that has already recorded "denied" will never prompt
   // again, so getUserMedia fails instantly and the click looks like it did nothing.
@@ -1500,9 +1547,35 @@ function fromHash(noScroll){
 }
 window.addEventListener("hashchange", () => fromHash(false));
 
+/* iOS drops any utterance not started by a tap, but only until the first
+   one succeeds. Prime it silently on the first interaction. */
+(function primeSpeech(){
+  if (!("speechSynthesis" in window)) return;
+  let primed = false;
+  const go = () => {
+    if (primed) return; primed = true;
+    try {
+      const u = new SpeechSynthesisUtterance(" ");
+      u.volume = 0;
+      speechSynthesis.speak(u);
+    } catch(e){}
+    document.removeEventListener("pointerdown", go);
+    document.removeEventListener("keydown", go);
+  };
+  document.addEventListener("pointerdown", go, { once:false });
+  document.addEventListener("keydown", go, { once:false });
+})();
+
 micBadge();
 (function startupCheck(){
   const e = env();
+  if (IS_IOS){
+    $("b-mic").textContent = "No recording on iOS";
+    $("b-mic").className = "badge warn";
+    S.micOk = false;
+    flash("warn", micRemedy("ios"));
+    return;
+  }
   if (!micSupported()){ micBlockedNotice("unsupported"); return; }
   // Say so before they press Record, rather than letting it fail silently.
   if (e.framed || e.isFile){
