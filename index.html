@@ -655,12 +655,21 @@ function loadVoices(){
   }
   const all = speechSynthesis.getVoices() || [];
   S.voices = all.filter(v => (v.lang||"").toLowerCase().startsWith("es"));
+  // macOS and Windows ship novelty voices in every language. They are useless
+  // as a pronunciation model, and they sort to the top alphabetically, so they
+  // must be pushed down explicitly.
+  const NOVELTY = /^(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|bells|bubbles|jester|organ|superstar|trinoids|whisper|wobble|bad news|good news|boing|bahh|albert|cellos|zarvox|junior|ralph|fred|kathy|princess|deranged|hysterical|bruce|agnes|victoria)\b/i;
+  // Known good native Spanish voices, best first.
+  const GOOD = /^(m[oó]nica|jorge|marisol|paulina|diego|juan|carlos|helena|laura|elvira|dalia|lucia|sof[ií]a|pablo|alvaro|álvaro)\b/i;
   const score = v => {
     const l = (v.lang||"").toLowerCase().replace("_","-");
+    const n0 = (v.name||"").trim();
     let n = 0;
-    if (l === "es-es") n += 100; else n += 30;
+    if (l === "es-es") n += 100; else n += 30;          // European Spanish for GCSE
+    if (NOVELTY.test(n0)) n -= 200;                      // never a cartoon voice
+    if (GOOD.test(n0)) n += 45;
     if (!v.localService) n += 20;
-    if (/neural|premium|enhanced|natural|siri/i.test(v.name)) n += 14;
+    if (/neural|premium|enhanced|natural|siri/i.test(n0)) n += 14;
     return n;
   };
   S.voices.sort((a,b) => score(b) - score(a));
@@ -782,6 +791,17 @@ function micRemedy(errName){
            serve + "<br><br>Firefox is often more permissive with local files, so that is worth a try too. " +
            "Or record in Voice Memos and attach the clip from a phrase's <b>⋯</b> menu.";
 
+  if (errName === "denied-sticky")
+    return "<b>Your browser has this site on its blocked list for the microphone, and it will not ask you again.</b> " +
+           "That is why clicking Record me appears to do nothing: there is no prompt coming. To clear it:" +
+           "<br>• <b>Chrome:</b> click the icon at the left of the address bar, set Microphone to Allow, then reload." +
+           "<br>• <b>Safari:</b> Safari menu, Settings for This Website, set Microphone to Allow, then reload." +
+           "<br>• <b>On a Mac, also check</b> System Settings, Privacy and Security, Microphone, and switch your browser on there. A browser blocked at that level never prompts either.";
+
+  if (errName === "no-input")
+    return "<b>This device has no microphone the browser can see.</b> A desktop Mac usually has none built in, so you will need headphones with a mic, a USB microphone or a webcam plugged in. " +
+           "Check System Settings, Sound, Input to confirm the Mac can see it, then reload this page.";
+
   if (errName === "NotAllowedError")
     return "<b>Permission was refused.</b> If you dismissed the prompt, click the icon at the left of the address bar, set the microphone to Allow and reload. " +
            "On a Mac also check System Settings, Privacy and Security, Microphone, and make sure your browser is switched on there.";
@@ -810,6 +830,25 @@ async function ensureMic(){
     if (t && t.readyState === "live") return true;
     S.stream = null;   // track died; ask again
   }
+  // Pre-flight. A browser that has already recorded "denied" will never prompt
+  // again, so getUserMedia fails instantly and the click looks like it did nothing.
+  try {
+    if (navigator.permissions && navigator.permissions.query){
+      const p = await navigator.permissions.query({ name:"microphone" });
+      if (p.state === "denied"){
+        S.micOk = false; S.micErr = "denied-sticky"; micBadge(); micBlockedNotice("denied-sticky");
+        return false;
+      }
+    }
+  } catch(e){ /* Safari cannot query this; fall through and just ask */ }
+  try {
+    const devs = await navigator.mediaDevices.enumerateDevices();
+    if (devs.filter(d => d.kind === "audioinput").length === 0){
+      S.micOk = false; S.micErr = "no-input"; micBadge(); micBlockedNotice("no-input");
+      return false;
+    }
+  } catch(e){ /* not fatal; try anyway */ }
+
   try {
     S.stream = await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true, autoGainControl:true }});
     S.micOk = true; S.micErr = null; micBadge(); $("flash").innerHTML = ""; return true;
