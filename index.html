@@ -23,47 +23,54 @@
     font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased; padding-bottom:70px;
   }
-  .wrap{max-width:820px;margin:0 auto;padding:0 18px}
-  a{color:var(--accent)}
+  .wrap{max-width:840px;margin:0 auto;padding:0 18px}
 
-  header{padding:26px 0 16px}
-  h1{font-size:23px;margin:0 0 5px;letter-spacing:-0.015em}
-  .sub{color:var(--soft);font-size:14.5px;margin:0;max-width:62ch}
+  header{padding:24px 0 12px}
+  h1{font-size:23px;margin:0 0 4px;letter-spacing:-0.015em}
+  .sub{color:var(--soft);font-size:14.5px;margin:0;max-width:64ch}
+  .badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;align-items:center}
+  .badge{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--go-bg);color:var(--go);font-weight:650}
+  .badge.warn{background:var(--warn-bg);color:var(--warn)}
+  .badge.off{background:var(--line2);color:var(--faint)}
+  .linkish{background:none;border:none;font:inherit;font-size:12px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:4px 2px}
 
-  .step{margin-top:24px}
-  .steph{display:flex;align-items:center;gap:9px;margin-bottom:11px}
-  .stepn{
-    width:23px;height:23px;border-radius:99px;background:var(--ink);color:#fff;
-    font-size:12.5px;font-weight:700;display:grid;place-items:center;flex:none;
+  /* quick guide */
+  .guide{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:14px 16px;margin-top:14px;
   }
-  .steph h2{font-size:16px;margin:0;font-weight:650;letter-spacing:-0.01em}
-  .steph .note{font-size:13.5px;color:var(--faint);margin-left:auto}
+  .guide h2{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);margin:0 0 10px;font-weight:700}
+  .gsteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}
+  .gstep{display:flex;gap:9px;align-items:flex-start}
+  .gnum{width:21px;height:21px;border-radius:99px;background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;display:grid;place-items:center;flex:none;margin-top:1px}
+  .gtxt{font-size:13.5px;line-height:1.45;color:var(--soft)}
+  .gtxt b{color:var(--ink);font-weight:650;display:block}
+  .gnote{font-size:13px;color:var(--faint);margin:11px 0 0;padding-top:10px;border-top:1px solid var(--line2)}
+  .gnote b{color:var(--soft)}
 
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:12px}
+  .sechead{display:flex;align-items:center;gap:9px;margin:22px 0 0}
+  .secn{width:22px;height:22px;border-radius:99px;background:var(--ink);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+  .sechead h2{font-size:15.5px;margin:0;font-weight:650}
+  .sechead .note{font-size:13px;color:var(--faint);margin-left:auto}
 
+  .chiplabel{font-size:11.5px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin:0 0 7px}
+  .chiplabel.second{margin-top:14px}
   .chips{display:flex;gap:7px;flex-wrap:wrap}
-  .chip{
-    border:1px solid var(--line);background:var(--card);color:var(--ink);
-    padding:8px 13px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;transition:.12s;
-  }
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 13px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;transition:.12s}
   .chip:hover{border-color:var(--faint)}
   .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
   .chip .lv{font-size:11px;opacity:.55;margin-left:6px}
-  .chipgroup{margin-bottom:9px}
-  .chiplabel{font-size:12px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 7px}
 
-  .modes{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
-  .mode{
-    text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:10px;
-    padding:12px 14px;cursor:pointer;font:inherit;transition:.12s;
-  }
+  .modes{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(205px,1fr))}
+  .mode{text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:11px 13px;cursor:pointer;font:inherit;transition:.12s}
   .mode:hover{border-color:var(--faint)}
   .mode[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-bg)}
-  .mode b{display:block;font-size:15px;font-weight:650;margin-bottom:2px}
-  .mode span{font-size:13px;color:var(--soft);line-height:1.4}
+  .mode b{display:block;font-size:14.5px;font-weight:650;margin-bottom:2px}
+  .mode span{font-size:12.5px;color:var(--soft);line-height:1.4}
 
   .sliderow{display:flex;gap:22px;flex-wrap:wrap;margin-top:15px;align-items:center}
-  .sl{flex:1;min-width:210px}
+  .sl{flex:1;min-width:200px}
   .sl label{display:block;font-size:12.5px;font-weight:650;color:var(--soft);margin-bottom:5px}
   .sl label b{color:var(--accent);font-variant-numeric:tabular-nums}
   input[type=range]{width:100%;accent-color:var(--accent)}
@@ -73,27 +80,32 @@
   details.more .inner{padding-top:12px;display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
   .fld{display:flex;flex-direction:column;gap:5px}
   .fld label{font-size:12px;color:var(--faint);font-weight:650;text-transform:uppercase;letter-spacing:.05em}
-  select,input[type=number]{font:inherit;font-size:14px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)}
-  select{max-width:260px}
+  select{font:inherit;font-size:14px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);max-width:260px}
 
   /* stage */
-  .stage{
-    position:sticky;top:0;z-index:20;background:var(--paper);
-    padding:11px 0 9px;border-bottom:1px solid var(--line);margin-top:22px;
-  }
-  .stagerow{display:flex;gap:12px;align-items:center}
-  .big{
-    font:inherit;font-size:16px;font-weight:650;padding:13px 26px;border:none;border-radius:10px;
-    background:var(--accent);color:#fff;cursor:pointer;flex:none;
-  }
+  .stage{position:sticky;top:0;z-index:20;background:var(--paper);padding:11px 0 9px;border-bottom:1px solid var(--line);margin-top:20px}
+  .stagerow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .big{font:inherit;font-size:16px;font-weight:650;padding:13px 24px;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;flex:none}
   .big:hover{filter:brightness(1.07)}
-  .big.stop{background:var(--ink)}
-  .big:disabled{opacity:.4;cursor:default}
-  .cue{flex:1;min-width:0}
+  .big.next{background:var(--go)}
+  .big.grey{background:#6a7183}
+  .big:disabled{opacity:.35;cursor:default}
+
+  .switchwrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none}
+  .switchlabels{display:flex;gap:10px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .switchlabels span{color:var(--faint);transition:.15s}
+  .switchlabels span.on{color:var(--accent)}
+  .switch{width:58px;height:28px;border-radius:99px;border:1px solid var(--line);background:var(--card);position:relative;cursor:pointer;padding:0;transition:.16s}
+  .switch .knob{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:99px;background:var(--accent);transition:.16s}
+  .switch[aria-checked="true"]{background:var(--go-bg);border-color:var(--go)}
+  .switch[aria-checked="true"] .knob{left:32px;background:var(--go)}
+
+  .cue{flex:1;min-width:190px}
   .cuetop{display:flex;align-items:baseline;gap:9px}
   .cuestate{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
   .cuestate.listen{color:var(--soft)}
   .cuestate.turn{color:var(--go)}
+  .cuestate.wait{color:var(--accent)}
   .cuepos{font-size:13px;color:var(--faint);margin-left:auto;font-variant-numeric:tabular-nums}
   .bar{height:8px;border-radius:99px;background:var(--line2);overflow:hidden;margin-top:7px}
   .barfill{height:100%;width:0%;background:var(--soft);transition:width .1s linear}
@@ -106,7 +118,9 @@
   li.ph.done{opacity:.74}
   .phhead{display:flex;gap:11px;align-items:flex-start}
   .phn{font-size:12px;font-weight:700;color:var(--faint);min-width:18px;padding-top:6px;font-variant-numeric:tabular-nums}
-  .phtext{font-size:20px;line-height:1.4;flex:1;letter-spacing:-0.005em}
+  .phbody{flex:1;min-width:0}
+  .phtext{font-size:20px;line-height:1.4;letter-spacing:-0.005em}
+  .phen{font-size:14px;color:var(--soft);margin-top:4px;line-height:1.45}
   .tags{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0 0 29px}
   .tag{font-size:11.5px;padding:2.5px 8px;border-radius:99px;background:var(--line2);color:var(--soft);font-weight:600}
   .acts{display:flex;gap:7px;align-items:center;margin:12px 0 0 29px;flex-wrap:wrap}
@@ -116,14 +130,8 @@
   .btn.good{border-color:var(--go);color:var(--go);font-weight:650;background:var(--go-bg)}
   .btn:disabled{opacity:.45;cursor:default}
   .kebab{position:relative}
-  .kebab .menu{
-    position:absolute;right:0;top:calc(100% + 5px);background:var(--card);border:1px solid var(--line);
-    border-radius:10px;padding:6px;min-width:215px;box-shadow:0 8px 24px rgba(0,0,0,.09);z-index:30;
-  }
-  .kebab .menu button,.kebab .menu label{
-    display:block;width:100%;text-align:left;font:inherit;font-size:13.5px;padding:8px 10px;
-    border:none;background:none;border-radius:7px;cursor:pointer;color:var(--ink)
-  }
+  .kebab .menu{position:absolute;right:0;top:calc(100% + 5px);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;min-width:225px;box-shadow:0 8px 24px rgba(0,0,0,.09);z-index:30}
+  .kebab .menu button,.kebab .menu label{display:block;width:100%;text-align:left;font:inherit;font-size:13.5px;padding:8px 10px;border:none;background:none;border-radius:7px;cursor:pointer;color:var(--ink)}
   .kebab .menu button:hover,.kebab .menu label:hover{background:var(--paper)}
 
   .fb{margin:13px 0 0 29px;border-top:1px solid var(--line2);padding-top:12px}
@@ -133,13 +141,12 @@
   .mini i{display:block;height:100%;background:var(--go)}
   .mini i.low{background:var(--warn)}
   .tips{margin:10px 0 0;padding:0;list-style:none}
-  .tips li{font-size:14px;line-height:1.5;color:var(--ink);padding:7px 0 7px 16px;position:relative}
+  .tips li{font-size:14px;line-height:1.5;padding:7px 0 7px 16px;position:relative}
   .tips li:before{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;border-radius:99px;background:var(--accent)}
   .checks{margin-top:12px;background:var(--paper);border-radius:10px;padding:12px}
   .checks p{margin:0 0 9px;font-size:13.5px;color:var(--soft)}
   .ck{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:14px;cursor:pointer}
   .ck input{margin-top:4px;accent-color:var(--accent);flex:none}
-  .ck span b{font-weight:650}
   .advice{margin-top:11px;border-left:3px solid var(--accent);padding:3px 0 3px 13px}
   .advice h4{margin:0 0 4px;font-size:14.5px;font-weight:650}
   .advice p{margin:0 0 7px;font-size:14px;line-height:1.5;color:var(--soft)}
@@ -147,40 +154,25 @@
   .advice .drill{font-size:13px;padding:6px 11px}
 
   /* upload */
-  .drop{
-    border:2px dashed var(--line);border-radius:var(--r);background:var(--card);
-    padding:24px 18px;text-align:center;transition:.14s;cursor:pointer;
-  }
+  .drop{border:2px dashed var(--line);border-radius:var(--r);background:var(--card);padding:20px 16px;text-align:center;transition:.14s;cursor:pointer}
   .drop.hot{border-color:var(--accent);background:var(--accent-bg)}
-  .drop b{display:block;font-size:15.5px;font-weight:650;margin-bottom:4px}
-  .drop span{font-size:13.5px;color:var(--soft)}
-  textarea{width:100%;min-height:96px;font:inherit;font-size:15px;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);resize:vertical;margin-top:11px}
+  .drop b{display:block;font-size:15px;font-weight:650;margin-bottom:3px}
+  .drop span{font-size:13px;color:var(--soft)}
+  textarea{width:100%;min-height:90px;font:inherit;font-size:15px;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);resize:vertical;margin-top:11px}
   .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:11px}
   .msg{font-size:13.5px;color:var(--soft)}
   .msg.err{color:var(--warn)}
 
-  .flash{padding:12px 14px;border-radius:10px;font-size:14px;margin-top:12px;line-height:1.5}
+  .flash{padding:12px 14px;border-radius:10px;font-size:14px;margin-top:12px;line-height:1.5;position:relative}
   .flash.warn{background:var(--warn-bg);border:1px solid #ecdcae;color:#6b531a}
   .flash.ok{background:var(--go-bg);border:1px solid #c6e4d9;color:#145c43}
-  .flash b{font-weight:700}
+  .flash .x{position:absolute;top:7px;right:9px;background:none;border:none;font-size:17px;line-height:1;cursor:pointer;color:inherit;opacity:.5;padding:3px}
+  .flash .x:hover{opacity:1}
+  .flash code{background:rgba(0,0,0,.06);padding:2px 6px;border-radius:5px;font-size:12.5px}
 
-  .badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
-  .badge{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--go-bg);color:var(--go);font-weight:650}
-  .badge.warn{background:var(--warn-bg);color:var(--warn)}
-  .badge.off{background:var(--line2);color:var(--faint)}
+  #diag{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font:12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;margin-top:12px;overflow-x:auto;position:relative}
 
-  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--faint);line-height:1.6}
-  .vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-  /* intro */
-  .intro{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;margin-top:16px}
-  .intro h3{margin:0 0 10px;font-size:15.5px;font-weight:650}
-  .intro ol{margin:0;padding-left:21px}
-  .intro li{font-size:14.5px;line-height:1.55;margin-bottom:6px;color:var(--soft)}
-  .intro li b{color:var(--ink);font-weight:650}
-  .intro .close{margin-top:12px}
-
-  /* help */
-  .help{margin-top:30px}
+  .help{margin-top:28px}
   .help details{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:9px}
   .help summary{padding:13px 16px;cursor:pointer;font-weight:650;font-size:14.5px}
   .help .inner2{padding:0 16px 15px;font-size:14.5px;line-height:1.6;color:var(--soft)}
@@ -190,16 +182,19 @@
 
   .titlerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%}
   .titlerow .note{margin-left:auto}
+  .toggleline{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--soft);margin-top:10px;cursor:pointer}
+  .toggleline input{accent-color:var(--accent)}
+
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--faint);line-height:1.6}
+  .vis-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
   @media (max-width:620px){
     .phtext{font-size:18px}
     .tags,.acts,.fb{margin-left:0}
-    .big{padding:14px 20px;font-size:15px;flex:1}
-    .stagerow{flex-wrap:wrap}
-    .cue{order:3;width:100%;flex-basis:100%}
+    .big{padding:13px 18px;font-size:15px;flex:1}
+    .cue{order:5;width:100%;flex-basis:100%}
     .modes{grid-template-columns:1fr}
     .btn{padding:9px 13px;font-size:14px}
-    .steph .note{margin-left:0;flex-basis:100%}
     h1{font-size:20px}
     .wrap{padding:0 14px}
   }
@@ -209,108 +204,109 @@
 <div class="wrap">
 
 <header>
-  <h1>Spanish Play Along Engine</h1>
-  <p class="sub">The model speaks, you repeat in the gap, then you hear both back to back and the page tells you which sounds to go after. It never scores your pronunciation.</p>
+  <h1>Spanish Play Along</h1>
+  <p class="sub">Reading aloud and pronunciation practice. You hear a phrase, say it back, then hear both and find out which sounds to fix.</p>
   <div class="badges">
     <span class="badge">Nothing leaves this device</span>
     <span class="badge off" id="b-voice">Checking voices…</span>
     <span class="badge off" id="b-mic">Microphone not yet allowed</span>
-    <button class="btn" id="diagBtn" style="padding:3px 11px;font-size:12px;border-radius:99px">Check microphone</button>
+    <button class="linkish" id="diagBtn">Test microphone</button>
   </div>
 </header>
 
+<div class="guide">
+  <h2>How to use it</h2>
+  <div class="gsteps">
+    <div class="gstep"><span class="gnum">1</span><span class="gtxt"><b>Pick a passage</b>Or a sound drill, if one sound keeps catching you out.</span></div>
+    <div class="gstep"><span class="gnum">2</span><span class="gtxt"><b>Press Start</b>A Spanish voice reads the first phrase, slowly if you want.</span></div>
+    <div class="gstep"><span class="gnum">3</span><span class="gtxt"><b>Speak in the silence</b>It leaves a gap the same length. Say the phrase into it.</span></div>
+    <div class="gstep"><span class="gnum">4</span><span class="gtxt"><b>Compare and fix</b>Hear yourself against the model, tick what missed, read the advice.</span></div>
+  </div>
+  <p class="gnote"><b>It waits for you after every phrase.</b> Press <b>Next</b> when you are ready, or flip the switch to <b>Auto</b> to let it run straight through.</p>
+</div>
+
 <div id="flash"></div>
-<pre id="diag" style="display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font:12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;margin-top:12px;overflow-x:auto"></pre>
+<pre id="diag"></pre>
 
-<div class="intro" id="intro" style="display:none">
-  <h3>New here? It takes three steps.</h3>
-  <ol>
-    <li><b>Pick a passage or a sound drill.</b> Passages are reading aloud practice; drills hammer one sound at a time.</li>
-    <li><b>Press Start.</b> A Spanish voice reads a phrase, then leaves a silence the same length. You say it back into that silence.</li>
-    <li><b>Press Compare.</b> You hear the model, then yourself, then the model again. Tick whatever did not match and the page tells you how to fix it.</li>
-  </ol>
-  <button class="btn" id="introClose">Got it</button>
-</div>
+<!-- 1 -->
+<div class="sechead"><span class="secn">1</span><h2>What to practise</h2></div>
+<div class="card">
+  <p class="chiplabel">Reading aloud passages</p>
+  <div class="chips" id="sets-passage"></div>
+  <p class="chiplabel second">Sound drills</p>
+  <div class="chips" id="sets-drill"></div>
 
-<!-- STEP 1 -->
-<div class="step">
-  <div class="steph"><span class="stepn">1</span><h2>Choose what to practise</h2></div>
-  <div class="card">
-    <div class="chiplabel" style="margin-top:0">Reading aloud passages</div>
-    <div class="chips" id="sets-passage"></div>
-    <div class="chiplabel">Sound drills</div>
-    <div class="chips" id="sets-drill"></div>
-
-    <details class="more" id="uploadBox">
-      <summary>Use your own material instead</summary>
-      <div class="inner" style="display:block">
-        <div class="drop" id="drop">
-          <b>Drop a file here, or click to choose one</b>
-          <span>Word (.docx), PDF or plain text (.txt). The text is read in your browser and never uploaded.</span>
-          <input type="file" id="file" accept=".txt,.docx,.pdf,text/plain" class="vis-hidden">
-        </div>
-        <textarea id="own" placeholder="Or paste Spanish here: El verano pasado fui de vacaciones a Andalucía con mis primos. Nos alojamos en un hotel pequeño cerca de la playa."></textarea>
-        <div class="row">
-          <button class="btn prime" id="useOwn">Load as phrases</button>
-          <span class="msg" id="ownMsg"></span>
-        </div>
+  <details class="more" id="uploadBox">
+    <summary>Use your own passage instead</summary>
+    <div class="inner" style="display:block">
+      <div class="drop" id="drop">
+        <b>Drop a file here, or click to choose one</b>
+        <span>Word, PDF or plain text. Read in your browser, never uploaded.</span>
+        <input type="file" id="file" accept=".txt,.docx,.pdf,text/plain" class="vis-hidden">
       </div>
-    </details>
-  </div>
-</div>
-
-<!-- STEP 2 -->
-<div class="step">
-  <div class="steph"><span class="stepn">2</span><h2>Choose how to practise</h2></div>
-  <div class="card">
-    <div class="modes" id="modes">
-      <button class="mode" data-mode="gap" aria-pressed="true">
-        <b>Your turn</b><span>I say the phrase, you repeat it in the gap. Records you if the microphone is available.</span>
-      </button>
-      <button class="mode" data-mode="along" aria-pressed="false">
-        <b>Speak along</b><span>Say it at the same time as me. No recording, because the mic would pick me up too.</span>
-      </button>
-      <button class="mode" data-mode="listen" aria-pressed="false">
-        <b>Just listen</b><span>Model voice only, no gaps. Good for a first hearing.</span>
-      </button>
-    </div>
-
-    <div class="sliderow">
-      <div class="sl">
-        <label for="speed">Model speed: <b id="speedV">90%</b></label>
-        <input type="range" id="speed" min="55" max="100" step="5" value="90">
-      </div>
-      <div class="sl">
-        <label for="reps">Repeats of each phrase: <b id="repsV">1</b></label>
-        <input type="range" id="reps" min="1" max="6" step="1" value="1">
+      <textarea id="own" placeholder="Or paste Spanish here: El verano pasado fui de vacaciones a Andalucía con mis primos."></textarea>
+      <div class="row">
+        <button class="btn prime" id="useOwn">Load as phrases</button>
+        <span class="msg" id="ownMsg"></span>
       </div>
     </div>
+  </details>
+</div>
 
-    <details class="more">
-      <summary>More options</summary>
-      <div class="inner">
-        <div class="fld">
-          <label for="gapslack">Gap length</label>
-          <select id="gapslack">
-            <option value="1">Same as the model</option>
-            <option value="1.25" selected>A quarter longer</option>
-            <option value="1.6">Much longer</option>
-          </select>
-        </div>
-        <div class="fld">
-          <label for="voice">Model voice</label>
-          <select id="voice"><option>Loading…</option></select>
-        </div>
-      </div>
-    </details>
+<!-- 2 -->
+<div class="sechead"><span class="secn">2</span><h2>How to practise</h2></div>
+<div class="card">
+  <div class="modes" id="modes">
+    <button class="mode" data-mode="gap" aria-pressed="true">
+      <b>Your turn</b><span>I say it, you repeat in the gap. Records you if it can.</span>
+    </button>
+    <button class="mode" data-mode="along" aria-pressed="false">
+      <b>Speak along</b><span>Say it at the same time as me. No recording.</span>
+    </button>
+    <button class="mode" data-mode="listen" aria-pressed="false">
+      <b>Just listen</b><span>Model voice only, no gaps.</span>
+    </button>
   </div>
+  <div class="sliderow">
+    <div class="sl">
+      <label for="speed">Model speed: <b id="speedV">90%</b></label>
+      <input type="range" id="speed" min="55" max="100" step="5" value="90">
+    </div>
+    <div class="sl">
+      <label for="reps">Repeats of each phrase: <b id="repsV">1</b></label>
+      <input type="range" id="reps" min="1" max="6" step="1" value="1">
+    </div>
+  </div>
+  <label class="toggleline"><input type="checkbox" id="showEn" checked> Show the English translation under each phrase</label>
+  <details class="more">
+    <summary>More options</summary>
+    <div class="inner">
+      <div class="fld">
+        <label for="gapslack">Gap length</label>
+        <select id="gapslack">
+          <option value="1">Same as the model</option>
+          <option value="1.25" selected>A quarter longer</option>
+          <option value="1.6">Much longer</option>
+        </select>
+      </div>
+      <div class="fld">
+        <label for="voice">Model voice</label>
+        <select id="voice"><option>Loading…</option></select>
+      </div>
+    </div>
+  </details>
 </div>
 
 <!-- STAGE -->
 <div class="stage" id="stage">
   <div class="stagerow">
     <button class="big" id="run">Start</button>
-    <button class="big stop" id="stop" disabled style="background:#6a7183">Stop</button>
+    <button class="big next" id="next" disabled>Next →</button>
+    <button class="big grey" id="stop" disabled>Stop</button>
+    <div class="switchwrap">
+      <div class="switchlabels"><span id="lblManual" class="on">Manual</span><span id="lblAuto">Auto</span></div>
+      <button class="switch" id="advSwitch" role="switch" aria-checked="false" aria-label="Manual or automatic advance"><span class="knob"></span></button>
+    </div>
     <div class="cue">
       <div class="cuetop">
         <span class="cuestate listen" id="cueState">Ready</span>
@@ -322,49 +318,45 @@
   </div>
 </div>
 
-<div class="step" style="margin-top:14px">
-  <div class="steph"><span class="stepn">3</span>
-    <span class="titlerow">
-      <h2 id="setTitle">Phrases</h2>
-      <button class="btn" id="copyLink" style="padding:4px 10px;font-size:12.5px">Copy link to this set</button>
-      <span class="note" id="setNote"></span>
-    </span>
-  </div>
-  <ol class="list" id="list"></ol>
+<div class="sechead" style="margin-top:14px"><span class="secn">3</span>
+  <span class="titlerow">
+    <h2 id="setTitle">Phrases</h2>
+    <button class="btn" id="copyLink" style="padding:4px 10px;font-size:12.5px">Copy link to this set</button>
+    <span class="note" id="setNote"></span>
+  </span>
 </div>
+<ol class="list" id="list"></ol>
 
 <div class="help">
   <details>
-    <summary>Using your own passage, or a native speaker's voice</summary>
+    <summary>Your own passage, or a native speaker's voice</summary>
     <div class="inner2">
-      <p>Under step 1, open <b>Use your own material instead</b>. Drop in a Word file, a PDF or a text file, or paste Spanish straight into the box. The text is read in your browser and never uploaded. It is split into phrases at the punctuation and the sounds in each phrase are tagged automatically, so the advice works on your material too.</p>
-      <p>The model voice is whichever Spanish voice is installed on the device. To use a real person instead, open a phrase's <b>⋯</b> menu and choose <b>Use my own model audio</b>. Exam board recordings and a colleague's phone recording both work. Attached audio can be slowed down without changing pitch, so a slowed recording still sounds like someone speaking slowly.</p>
+      <p>Under step 1, open <b>Use your own passage instead</b>. Drop in a Word file, a PDF or text, or paste Spanish straight in. It is read in your browser and never uploaded, split into phrases at the punctuation, and the sounds in each phrase are tagged automatically so the advice still works. English translations are only shown for the built in passages, since nothing here can translate your own text offline.</p>
+      <p>The model voice is whichever Spanish voice is on the device. To use a real person instead, open a phrase's <b>⋯</b> menu and choose <b>Use my own model audio</b>. Attached audio slows down without changing pitch, so it still sounds like someone speaking slowly.</p>
     </div>
   </details>
   <details>
     <summary>If recording does not work</summary>
     <div class="inner2">
-      <p>Press <b>Check microphone</b> at the top of the page. It runs a full test and tells you exactly where the problem is.</p>
-      <p>The two usual causes are nothing to do with this page. A page opened straight from disk, with a <code>file://</code> address, is refused the microphone by Chrome and Safari by design. A page inside an embedded frame is refused too. Loading this site from its normal web address avoids both.</p>
-      <p>Also worth checking: whether the device has a microphone at all, since a desktop Mac usually does not, and whether the browser is switched on under System Settings, Privacy and Security, Microphone.</p>
-      <p>You can always record in a voice recorder app and attach the clip from a phrase's <b>⋯</b> menu. That route needs no permissions anywhere.</p>
+      <p>Press <b>Test microphone</b> at the top. It runs a full check and names the problem.</p>
+      <p>On an <b>iPhone or iPad</b>, recording cannot work at all. Safari mutes the microphone the moment the page speaks, and every browser on iOS uses Safari underneath. Everything else works there, so speak into the gaps aloud, or attach a Voice Memos clip from a phrase's <b>⋯</b> menu.</p>
+      <p>Elsewhere the usual causes are a page opened straight from disk with a <code>file://</code> address, a page inside an embedded frame, or a permission already set to denied, in which case the browser never prompts again. A desktop Mac also has no microphone of its own.</p>
     </div>
   </details>
   <details>
-    <summary>For teachers: what this does and does not do</summary>
+    <summary>For teachers</summary>
     <div class="inner2">
-      <p>This is rehearsal software, not assessment software. It gives a model, a controllable tempo, a silence to speak into, unlimited repetitions and an immediate comparison. It never scores pronunciation, because automated pronunciation scoring is least reliable on exactly the features that matter most here, and a wrong score teaches the wrong thing.</p>
-      <p>The only measured feedback is timing: whether sound was present, when it started and how long it lasted. That cannot be wrong. Everything about the sounds themselves is a self check: the pupil listens, ticks what did not match, and gets a specific explanation and a drill for it.</p>
-      <p>On data protection there is nothing to assess. No audio, text or recording leaves the device, nothing is stored, there are no accounts and no analytics. Recordings live in the browser tab's memory and are gone when the tab closes.</p>
-      <p>Each set has its own link, so you can set one passage or one drill as homework. Use <b>Copy link to this set</b>.</p>
+      <p>This is rehearsal software, not assessment software. It gives a model, a controllable tempo, a silence to speak into, unlimited repetition and an immediate comparison. It never scores pronunciation, because automated scoring is least reliable on exactly the features that matter most here, and a wrong score teaches the wrong thing.</p>
+      <p>The only measured feedback is timing: whether sound was present, when it started, how long it lasted. That cannot be wrong. Everything about the sounds is a self check, with a specific explanation and a drill attached.</p>
+      <p>Nothing leaves the device. No audio, text or recording is uploaded or stored, there are no accounts and no analytics, so there is nothing for a data protection assessment to consider.</p>
+      <p>Each set has its own link, so a single passage or drill can be set as homework. Use <b>Copy link to this set</b>.</p>
     </div>
   </details>
 </div>
 
 <footer>
-  Nothing is uploaded, stored or sent anywhere. Recordings and uploaded text live in this tab's memory only and vanish when you close or reload it.
-  Timing feedback measures whether sound was present, never whether you were correct — the advice tells you what to listen for, and your ear decides.
-  All built in Spanish was written for this tool.
+  Nothing is uploaded, stored or sent anywhere. Recordings and uploaded text live in this tab's memory only and vanish when you close it.
+  Timing feedback measures whether sound was present, never whether you were correct. All built in Spanish was written for this tool.
 </footer>
 </div>
 
@@ -373,226 +365,198 @@
 
 /* ============================================================
    1. SOUND ADVICE LIBRARY
-   Each feature: what it is, the usual English speaker error,
-   how to produce it, and which drill set to go to.
 ============================================================ */
 const SOUNDS = {
-  rr: {
-    label:"rolled rr",
+  rr: { label:"rolled rr",
     check:"Did the <b>rr</b> actually roll, or did it come out as one English r?",
     what:"A trilled r: the tongue tip bounces several times off the ridge behind the top teeth. Written <b>rr</b> between vowels, and also <b>r</b> at the start of a word.",
-    how:"Start from the English word <i>butter</i> said quickly in an American accent — that tap is a single Spanish r. For the roll, relax the tongue and push air until it flutters. Say <i>caro</i>, then force a longer buzz: <i>carro</i>. Practising <i>brrr</i> like a shiver gets most pupils there.",
-    drill:"rr"
-  },
-  r1: {
-    label:"single tapped r",
+    how:"Start from the English word <i>butter</i> said quickly in an American accent, which is a single Spanish r. For the roll, relax the tongue and push air until it flutters. Say <i>caro</i>, then force a longer buzz: <i>carro</i>. Practising <i>brrr</i> like a shiver gets most pupils there.",
+    drill:"rr" },
+  r1: { label:"single tapped r",
     check:"Was the single <b>r</b> a quick tap, or an English r with the tongue curled back?",
-    what:"One light tap of the tongue tip. English r curls the tongue and never touches, which is the single most audible giveaway of an English accent in Spanish.",
-    how:"Think of the d in <i>ladder</i>. Say <i>para</i> as <i>pa-da-ra</i> and then speed it up. Keep the tongue tip forward and never round the lips.",
-    drill:"rr"
-  },
-  theta: {
-    label:"c and z as /θ/",
+    what:"One light tap of the tongue tip. English r curls the tongue and never touches, which is the most audible giveaway of an English accent in Spanish.",
+    how:"Think of the d in <i>ladder</i>. Say <i>para</i> as <i>pa-da-ra</i> and speed it up. Keep the tongue tip forward and never round the lips.",
+    drill:"rr" },
+  theta: { label:"c and z as /θ/",
     check:"Did <b>c</b> before e or i, and <b>z</b>, come out as the th in think?",
     what:"In European Spanish, c before e or i, and z anywhere, are pronounced like the th of <i>think</i>. Elsewhere c is a hard k.",
-    how:"Tongue tip lightly between the teeth, no voice. <i>cinco</i> is thin-ko, <i>zapato</i> is tha-pa-to. If you are substituting an s you are using Latin American pronunciation, which is correct Spanish but not the model for your exam.",
-    drill:"theta"
-  },
-  jota: {
-    label:"j and g as /x/",
+    how:"Tongue tip lightly between the teeth, no voice. <i>cinco</i> is thin-ko, <i>zapato</i> is tha-pa-to. If you are using an s you are using Latin American pronunciation, which is correct Spanish but not the model for your exam.",
+    drill:"theta" },
+  jota: { label:"j and g as /x/",
     check:"Did <b>j</b>, or <b>g</b> before e or i, come from the back of the throat?",
-    what:"A rasping sound made at the back of the mouth, like the ch in the Scottish <i>loch</i>. J is always this; g is this before e and i only.",
+    what:"A rasping sound at the back of the mouth, like the ch in the Scottish <i>loch</i>. J is always this; g is this before e and i only.",
     how:"Start from a hard k, then let the air keep flowing instead of stopping it. <i>jamón</i>, <i>gente</i>. An English h is too soft and an English j as in <i>jam</i> is quite wrong.",
-    drill:"jota"
-  },
-  enye: {
-    label:"ñ",
+    drill:"jota" },
+  enye: { label:"ñ",
     check:"Was the <b>ñ</b> one sound, or did it split into n plus y?",
     what:"A single sound with the middle of the tongue against the roof of the mouth, as in the <i>ni</i> of English <i>onion</i>.",
-    how:"Say <i>onion</i> and hold the middle. <i>año</i> has two syllables, a-ño, not three. Getting this wrong turns <i>año</i> (year) into <i>ano</i>, which pupils enjoy being warned about and then remember.",
-    drill:"nye"
-  },
-  elle: {
-    label:"ll and y",
+    how:"Say <i>onion</i> and hold the middle. <i>año</i> has two syllables, a-ño, not three. Getting it wrong turns <i>año</i>, meaning year, into something pupils enjoy being warned about and then remember.",
+    drill:"nye" },
+  elle: { label:"ll and y",
     check:"Did <b>ll</b> and <b>y</b> sound like the y in yes?",
     what:"For most speakers ll and y are the same sound, close to the y of <i>yes</i>. Never an English l.",
     how:"<i>llamo</i> is ya-mo, <i>calle</i> is ca-ye, <i>ella</i> is e-ya. Say <i>yes</i> and keep that tongue shape.",
-    drill:"nye"
-  },
-  stress: {
-    label:"written accent",
+    drill:"nye" },
+  stress: { label:"written accent",
     check:"Did you land the stress on the syllable carrying the accent?",
     what:"A written accent tells you which syllable to hit. It is not decoration, and it often carries the tense: <i>hablo</i> is I speak, <i>habló</i> is he spoke.",
-    how:"Read the accented syllable louder and longer than the rest. Tap the desk on it. Missing it does not just sound wrong, it changes the meaning, which is why it is marked.",
-    drill:"stress"
-  },
-  final: {
-    label:"stress on the last syllable",
+    how:"Read the accented syllable louder and longer than the rest. Tap the desk on it. Missing it changes the meaning, which is why it is marked.",
+    drill:"stress" },
+  final: { label:"stress on the last syllable",
     check:"Did the word end with real weight on the final syllable?",
-    what:"Words like <i>empezaré</i>, <i>pagarán</i> and <i>volveré</i> put the stress right at the end. English habitually weakens final syllables.",
+    what:"Words like <i>empezaré</i> and <i>pagarán</i> put the stress right at the end. English habitually weakens final syllables.",
     how:"Exaggerate it until it feels rude: empeza-RÉ. Then dial back slightly. If the ending fades out, the tense disappears with it.",
-    drill:"stress"
-  },
-  bv: {
-    label:"b and v",
+    drill:"stress" },
+  bv: { label:"b and v",
     check:"Did <b>b</b> and <b>v</b> sound like each other, and softer than in English?",
     what:"B and v are the same sound in Spanish. Between vowels it is soft, made with the lips barely touching, not the English v made with teeth on lip.",
-    how:"<i>vivir</i> and <i>beber</i> start the same way. For the soft version in <i>abuela</i> or <i>Sevilla</i>, let the lips almost but not quite close. Never put your top teeth on your lower lip.",
-    drill:"bv"
-  },
-  vowel: {
-    label:"clean vowels",
+    how:"<i>vivir</i> and <i>beber</i> start the same way. For the soft version in <i>abuela</i>, let the lips almost but not quite close. Never put your top teeth on your lower lip.",
+    drill:"bv" },
+  vowel: { label:"clean vowels",
     check:"Were the vowels short and pure, or did they slide the way English vowels do?",
-    what:"Spanish has five vowels and each is one steady sound. English speakers add a glide, turning <i>no</i> into <i>nou</i> and <i>café</i> into <i>cafei</i>.",
+    what:"Spanish has five vowels and each is one steady sound. English speakers add a glide, turning <i>no</i> into <i>nou</i>.",
     how:"Hold each vowel still. Say <i>a, e, i, o, u</i> flat and crisp, then put them into words: <i>mesa</i>, <i>libro</i>, <i>uno</i>. Unstressed vowels keep their full value too, so the o in <i>bonito</i> is a real o, never an uh.",
-    drill:"vowels"
-  },
-  link: {
-    label:"linking words together",
+    drill:"vowels" },
+  link: { label:"linking words together",
     check:"Did the words run into one another, or did you stop between each one?",
-    what:"Spanish links across word boundaries. <i>mi amigo</i> is said as one unit, and a word ending in a vowel merges into the next word beginning with one.",
-    how:"Read the phrase as one long word first, then put the rhythm back. Pausing between words is the main reason a technically accurate reading still scores poorly for fluency.",
-    drill:"vowels"
-  },
-  h: {
-    label:"silent h",
+    what:"Spanish links across word boundaries. <i>mi amigo</i> is one unit, and a word ending in a vowel merges into the next word beginning with one.",
+    how:"Read the phrase as one long word first, then put the rhythm back. Pausing between words is the main reason an accurate reading still scores poorly for fluency.",
+    drill:"vowels" },
+  h: { label:"silent h",
     check:"Did you leave the <b>h</b> completely silent?",
     what:"H is never pronounced in Spanish. <i>hola</i> is o-la, <i>hago</i> is a-go.",
     how:"Cover the h with your finger as you read. If you can hear it, it is wrong.",
-    drill:"jota"
-  },
-  qu: {
-    label:"qu as k",
+    drill:"jota" },
+  qu: { label:"qu as k",
     check:"Was <b>qu</b> a plain k, with no w sound?",
     what:"In <i>que</i>, <i>quiero</i> and <i>parque</i> the u is silent. It is k, never kw.",
     how:"<i>que</i> rhymes with the English <i>Ken</i> without the n. If you hear a w, you have carried English <i>queen</i> across.",
-    drill:"vowels"
-  }
+    drill:"vowels" }
 };
 
 /* ============================================================
-   2. MATERIAL  (all Spanish written for this tool)
+   2. MATERIAL  (Spanish written for this tool, with translations)
 ============================================================ */
 const SETS = [
   { id:"fam", title:"Mi familia", level:"F", kind:"passage",
     note:"Two /θ/ sounds in Zaragoza and a soft b in abuela.",
     items:[
-      {text:"Me llamo Elena y vivo en Zaragoza con mi familia.", tags:["elle","theta","bv"]},
-      {text:"Tengo un hermano mayor que se llama Javier.", tags:["h","jota","elle"]},
-      {text:"Los fines de semana solemos cenar juntos en casa de mi abuela.", tags:["theta","jota","bv"]},
-      {text:"Para mí, la amistad es muy importante.", tags:["r1","link","stress"]}
+      {text:"Me llamo Elena y vivo en Zaragoza con mi familia.", en:"My name is Elena and I live in Zaragoza with my family.", tags:["elle","theta","bv"]},
+      {text:"Tengo un hermano mayor que se llama Javier.", en:"I have an older brother called Javier.", tags:["h","jota","elle"]},
+      {text:"Los fines de semana solemos cenar juntos en casa de mi abuela.", en:"At weekends we usually have dinner together at my grandmother's house.", tags:["theta","jota","bv"]},
+      {text:"Para mí, la amistad es muy importante.", en:"For me, friendship is very important.", tags:["r1","link","stress"]}
     ]},
   { id:"libre", title:"El tiempo libre", level:"F", kind:"passage",
     note:"Stress is the thing here: música and sábados hit the first syllable.",
     items:[
-      {text:"Durante la semana no tengo mucho tiempo libre.", tags:["r1","vowel"]},
-      {text:"Sin embargo, los sábados juego al baloncesto con mi equipo.", tags:["stress","jota","theta"]},
-      {text:"También me gusta escuchar música mientras hago los deberes.", tags:["stress","h","bv"]},
-      {text:"Lo que más me gusta es salir con mis amigos al parque.", tags:["qu","stress","link"]}
+      {text:"Durante la semana no tengo mucho tiempo libre.", en:"During the week I don't have much free time.", tags:["r1","vowel"]},
+      {text:"Sin embargo, los sábados juego al baloncesto con mi equipo.", en:"However, on Saturdays I play basketball with my team.", tags:["stress","jota","theta"]},
+      {text:"También me gusta escuchar música mientras hago los deberes.", en:"I also like listening to music while I do my homework.", tags:["stress","h","bv"]},
+      {text:"Lo que más me gusta es salir con mis amigos al parque.", en:"What I like most is going out to the park with my friends.", tags:["qu","stress","link"]}
     ]},
   { id:"sana", title:"La vida sana", level:"F/H", kind:"passage",
     note:"Three /θ/ sounds and two written accents. A good diagnostic.",
     items:[
-      {text:"Intento llevar una vida bastante sana.", tags:["elle","bv","vowel"]},
-      {text:"Desayuno fruta todos los días y bebo mucha agua.", tags:["stress","bv","elle"]},
-      {text:"Antes comía demasiada comida rápida, pero ahora lo evito.", tags:["stress","r1","h"]},
-      {text:"Creo que hacer ejercicio ayuda a reducir el estrés.", tags:["jota","theta","final"]}
+      {text:"Intento llevar una vida bastante sana.", en:"I try to lead a fairly healthy life.", tags:["elle","bv","vowel"]},
+      {text:"Desayuno fruta todos los días y bebo mucha agua.", en:"I have fruit for breakfast every day and drink plenty of water.", tags:["stress","bv","elle"]},
+      {text:"Antes comía demasiada comida rápida, pero ahora lo evito.", en:"I used to eat too much fast food, but now I avoid it.", tags:["stress","r1","h"]},
+      {text:"Creo que hacer ejercicio ayuda a reducir el estrés.", en:"I think exercising helps to reduce stress.", tags:["jota","theta","final"]}
     ]},
   { id:"estudios", title:"Los estudios y el trabajo", level:"H", kind:"passage",
     note:"Final syllable stress in empezaré, and the ñ in año.",
     items:[
-      {text:"El año que viene empezaré el bachillerato.", tags:["enye","final","elle"]},
-      {text:"Me gustaría estudiar ingeniería en la universidad.", tags:["stress","jota","vowel"]},
-      {text:"Aunque será difícil, estoy dispuesta a trabajar duro.", tags:["final","stress","r1"]},
-      {text:"A largo plazo, quiero encontrar un trabajo que me permita viajar.", tags:["theta","qu","jota"]}
+      {text:"El año que viene empezaré el bachillerato.", en:"Next year I will start sixth form.", tags:["enye","final","elle"]},
+      {text:"Me gustaría estudiar ingeniería en la universidad.", en:"I would like to study engineering at university.", tags:["stress","jota","vowel"]},
+      {text:"Aunque será difícil, estoy dispuesta a trabajar duro.", en:"Although it will be difficult, I am willing to work hard.", tags:["final","stress","r1"]},
+      {text:"A largo plazo, quiero encontrar un trabajo que me permita viajar.", en:"In the long term, I want to find a job that lets me travel.", tags:["theta","qu","jota"]}
     ]},
   { id:"vacaciones", title:"Las vacaciones", level:"H", kind:"passage",
     note:"Contains the rolled rr in recorrer and a subjunctive at the end.",
     items:[
-      {text:"El verano pasado fui de vacaciones a Andalucía con mis primos.", tags:["bv","theta","stress"]},
-      {text:"Nos alojamos en un hotel pequeño cerca de la playa.", tags:["jota","enye","theta"]},
-      {text:"Lo mejor fue recorrer las calles estrechas de Granada.", tags:["rr","elle","jota"]},
-      {text:"Si tuviera más dinero, volvería allí todos los años.", tags:["stress","elle","enye"]}
+      {text:"El verano pasado fui de vacaciones a Andalucía con mis primos.", en:"Last summer I went on holiday to Andalusia with my cousins.", tags:["bv","theta","stress"]},
+      {text:"Nos alojamos en un hotel pequeño cerca de la playa.", en:"We stayed in a small hotel near the beach.", tags:["jota","enye","theta"]},
+      {text:"Lo mejor fue recorrer las calles estrechas de Granada.", en:"The best part was wandering the narrow streets of Granada.", tags:["rr","elle","jota"]},
+      {text:"Si tuviera más dinero, volvería allí todos los años.", en:"If I had more money, I would go back there every year.", tags:["stress","elle","enye"]}
     ]},
   { id:"ambiente", title:"El medio ambiente", level:"H", kind:"passage",
     note:"Dense with written accents. Use once stress placement is secure.",
     items:[
-      {text:"Me preocupa bastante el cambio climático.", tags:["stress","bv","vowel"]},
-      {text:"En mi barrio reciclamos el papel y el plástico.", tags:["rr","theta","stress"]},
-      {text:"Deberíamos usar el transporte público más a menudo.", tags:["stress","bv","link"]},
-      {text:"Si no actuamos ahora, las generaciones futuras lo pagarán.", tags:["jota","final","h"]}
+      {text:"Me preocupa bastante el cambio climático.", en:"Climate change worries me quite a lot.", tags:["stress","bv","vowel"]},
+      {text:"En mi barrio reciclamos el papel y el plástico.", en:"In my neighbourhood we recycle paper and plastic.", tags:["rr","theta","stress"]},
+      {text:"Deberíamos usar el transporte público más a menudo.", en:"We should use public transport more often.", tags:["stress","bv","link"]},
+      {text:"Si no actuamos ahora, las generaciones futuras lo pagarán.", en:"If we don't act now, future generations will pay for it.", tags:["jota","final","h"]}
     ]},
 
   { id:"rr", title:"r and rr", level:"—", kind:"drill",
     note:"Minimal pairs first, then the roll in context. Set repeats to four or five.",
     items:[
-      {text:"caro, carro", tags:["r1","rr"]},
-      {text:"pero, perro", tags:["r1","rr"]},
-      {text:"coro, corro", tags:["r1","rr"]},
-      {text:"El perro corre por la calle estrecha.", tags:["rr","elle"]},
-      {text:"Arriba, el río corre rápido.", tags:["rr","stress"]}
+      {text:"caro, carro", en:"expensive, cart", tags:["r1","rr"]},
+      {text:"pero, perro", en:"but, dog", tags:["r1","rr"]},
+      {text:"coro, corro", en:"choir, I run", tags:["r1","rr"]},
+      {text:"El perro corre por la calle estrecha.", en:"The dog runs along the narrow street.", tags:["rr","elle"]},
+      {text:"Arriba, el río corre rápido.", en:"Up above, the river runs fast.", tags:["rr","stress"]}
     ]},
   { id:"theta", title:"c, z and /θ/", level:"—", kind:"drill",
     note:"European Spanish. C before e or i, and z, are the th of think.",
     items:[
-      {text:"cinco, cerveza, zapato", tags:["theta"]},
-      {text:"zumo, azul, once", tags:["theta"]},
-      {text:"La zona de Zaragoza es preciosa.", tags:["theta","vowel"]},
-      {text:"Hace once años empecé a cocinar.", tags:["theta","enye","final"]}
+      {text:"cinco, cerveza, zapato", en:"five, beer, shoe", tags:["theta"]},
+      {text:"zumo, azul, once", en:"juice, blue, eleven", tags:["theta"]},
+      {text:"La zona de Zaragoza es preciosa.", en:"The Zaragoza area is beautiful.", tags:["theta","vowel"]},
+      {text:"Hace once años empecé a cocinar.", en:"Eleven years ago I started cooking.", tags:["theta","enye","final"]}
     ]},
   { id:"jota", title:"j and g", level:"—", kind:"drill",
     note:"J is always /x/. G is /x/ before e and i, hard elsewhere.",
     items:[
-      {text:"jamón, jueves, ojo", tags:["jota"]},
-      {text:"gente, girar, elegir", tags:["jota"]},
-      {text:"gato, guerra, guitarra", tags:["rr","vowel"]},
-      {text:"El jueves jugué con mi hijo en el jardín.", tags:["jota","final"]}
+      {text:"jamón, jueves, ojo", en:"ham, Thursday, eye", tags:["jota"]},
+      {text:"gente, girar, elegir", en:"people, to turn, to choose", tags:["jota"]},
+      {text:"gato, guerra, guitarra", en:"cat, war, guitar", tags:["rr","vowel"]},
+      {text:"El jueves jugué con mi hijo en el jardín.", en:"On Thursday I played with my son in the garden.", tags:["jota","final"]}
     ]},
   { id:"nye", title:"ñ, ll and y", level:"—", kind:"drill",
     note:"Three sounds English speakers tend to flatten.",
     items:[
-      {text:"España, mañana, niño", tags:["enye"]},
-      {text:"señor, año, pequeño", tags:["enye"]},
-      {text:"llamar, lluvia, calle", tags:["elle"]},
-      {text:"ella, ayer, yo", tags:["elle"]},
-      {text:"Mañana llueve en toda España.", tags:["enye","elle"]}
+      {text:"España, mañana, niño", en:"Spain, tomorrow, boy", tags:["enye"]},
+      {text:"señor, año, pequeño", en:"sir, year, small", tags:["enye"]},
+      {text:"llamar, lluvia, calle", en:"to call, rain, street", tags:["elle"]},
+      {text:"ella, ayer, yo", en:"she, yesterday, I", tags:["elle"]},
+      {text:"Mañana llueve en toda España.", en:"Tomorrow it rains all over Spain.", tags:["enye","elle"]}
     ]},
   { id:"stress", title:"Stress and accents", level:"—", kind:"drill",
     note:"The accent changes the tense. Ignoring it changes the meaning.",
     items:[
-      {text:"hablo, habló", tags:["stress","final"]},
-      {text:"canto, cantó", tags:["stress","final"]},
-      {text:"estudio, estudió", tags:["stress","final"]},
-      {text:"Ayer trabajó mucho, pero hoy trabajo yo.", tags:["final","stress","elle"]}
+      {text:"hablo, habló", en:"I speak, he spoke", tags:["stress","final"]},
+      {text:"canto, cantó", en:"I sing, he sang", tags:["stress","final"]},
+      {text:"estudio, estudió", en:"I study, he studied", tags:["stress","final"]},
+      {text:"Ayer trabajó mucho, pero hoy trabajo yo.", en:"Yesterday he worked hard, but today I am the one working.", tags:["final","stress","elle"]}
     ]},
   { id:"bv", title:"b and v", level:"—", kind:"drill",
     note:"The same sound, and softer than English. Teeth never touch the lip.",
     items:[
-      {text:"vivir, beber, bueno", tags:["bv"]},
-      {text:"vaca, también, abuela", tags:["bv"]},
-      {text:"Vamos a Sevilla en noviembre.", tags:["bv","elle"]}
+      {text:"vivir, beber, bueno", en:"to live, to drink, good", tags:["bv"]},
+      {text:"vaca, también, abuela", en:"cow, also, grandmother", tags:["bv"]},
+      {text:"Vamos a Sevilla en noviembre.", en:"We are going to Seville in November.", tags:["bv","elle"]}
     ]},
   { id:"vowels", title:"Vowels and linking", level:"—", kind:"drill",
     note:"Five pure vowels, and words that run into each other.",
     items:[
-      {text:"a, e, i, o, u", tags:["vowel"]},
-      {text:"mesa, libro, uno, bonito", tags:["vowel"]},
-      {text:"mi amigo, la universidad, de España", tags:["link","vowel"]},
-      {text:"Está aquí, en el instituto.", tags:["link","stress","qu"]}
+      {text:"a, e, i, o, u", en:"the five Spanish vowels", tags:["vowel"]},
+      {text:"mesa, libro, uno, bonito", en:"table, book, one, pretty", tags:["vowel"]},
+      {text:"mi amigo, la universidad, de España", en:"my friend, the university, from Spain", tags:["link","vowel"]},
+      {text:"Está aquí, en el instituto.", en:"He is here, at the secondary school.", tags:["link","stress","qu"]}
     ]},
   { id:"chunks", title:"Fluency chunks", level:"—", kind:"drill",
     note:"High frequency structures, drilled to automaticity.",
     items:[
-      {text:"Me gustaría…", tags:["stress","r1"]},
-      {text:"Tengo que…", tags:["qu"]},
-      {text:"Hay que…", tags:["qu","h"]},
-      {text:"Suelo…", tags:["vowel"]},
-      {text:"Lo que más me gusta es…", tags:["qu","stress"]},
-      {text:"Desde mi punto de vista…", tags:["bv","vowel"]},
-      {text:"Por un lado… por otro lado…", tags:["r1","link"]},
-      {text:"Si tuviera más tiempo…", tags:["bv","stress"]},
-      {text:"Lo bueno es que…", tags:["bv","qu"]},
-      {text:"Estoy de acuerdo con…", tags:["qu","link"]}
+      {text:"Me gustaría…", en:"I would like…", tags:["stress","r1"]},
+      {text:"Tengo que…", en:"I have to…", tags:["qu"]},
+      {text:"Hay que…", en:"One has to…", tags:["qu","h"]},
+      {text:"Suelo…", en:"I usually…", tags:["vowel"]},
+      {text:"Lo que más me gusta es…", en:"What I like most is…", tags:["qu","stress"]},
+      {text:"Desde mi punto de vista…", en:"From my point of view…", tags:["bv","vowel"]},
+      {text:"Por un lado… por otro lado…", en:"On the one hand… on the other hand…", tags:["r1","link"]},
+      {text:"Si tuviera más tiempo…", en:"If I had more time…", tags:["bv","stress"]},
+      {text:"Lo bueno es que…", en:"The good thing is that…", tags:["bv","qu"]},
+      {text:"Estoy de acuerdo con…", en:"I agree with…", tags:["qu","link"]}
     ]}
 ];
 
@@ -602,27 +566,25 @@ const SETS = [
 function detectTags(t){
   const s = " " + t.toLowerCase() + " ";
   const hit = [];
-  const add = (k, w) => hit.push([k, w]);
-  if (/rr/.test(s) || /\sr/.test(s))                 add("rr", /rr/.test(s) ? 10 : 5);
-  if (/[^r]r[aeiouáéíóú]/.test(s))                   add("r1", 7);
-  if (/c[eiéí]|z/.test(s))                           add("theta", 9);
-  if (/j|g[eiéí]/.test(s))                           add("jota", 9);
-  if (/ñ/.test(s))                                   add("enye", 10);
-  if (/ll|\sy|[aeiou]y[aeiou]/.test(s))              add("elle", 8);
-  if (/[áéíóú]/.test(s))                             add("stress", 8);
-  if (/[áéíóú]\s|[áéí]n\s|[áéí]s\s/.test(s))         add("final", 6);
-  if (/[bv]/.test(s))                                add("bv", 4);
-  if (/\sh[aeiou]/.test(s))                          add("h", 6);
-  if (/qu/.test(s))                                  add("qu", 5);
-  if (/[aeiouáéíóú]\s[aeiouáéíóú]/.test(s))          add("link", 5);
-  if (!hit.length)                                   add("vowel", 1);
-  return hit.sort((a,b) => b[1] - a[1]).slice(0,3).map(x => x[0]);
+  const add = (k,w) => hit.push([k,w]);
+  if (/rr/.test(s) || /\sr/.test(s))            add("rr", /rr/.test(s) ? 10 : 5);
+  if (/[^r]r[aeiouáéíóú]/.test(s))              add("r1", 7);
+  if (/c[eiéí]|z/.test(s))                      add("theta", 9);
+  if (/j|g[eiéí]/.test(s))                      add("jota", 9);
+  if (/ñ/.test(s))                              add("enye", 10);
+  if (/ll|\sy|[aeiou]y[aeiou]/.test(s))         add("elle", 8);
+  if (/[áéíóú]/.test(s))                        add("stress", 8);
+  if (/[áéíóú]\s|[áéí]n\s|[áéí]s\s/.test(s))    add("final", 6);
+  if (/[bv]/.test(s))                           add("bv", 4);
+  if (/\sh[aeiou]/.test(s))                     add("h", 6);
+  if (/qu/.test(s))                             add("qu", 5);
+  if (/[aeiouáéíóú]\s[aeiouáéíóú]/.test(s))     add("link", 5);
+  if (!hit.length)                              add("vowel", 1);
+  return hit.sort((a,b) => b[1]-a[1]).slice(0,3).map(x => x[0]);
 }
 
 function splitPhrases(txt){
-  return txt
-    .replace(/ /g," ")
-    .replace(/\s+/g," ")
+  return txt.replace(/ /g," ").replace(/\s+/g," ")
     .split(/(?<=[.;:!?])\s+|,\s+(?=[^,]{14,})/)
     .map(s => s.trim())
     .filter(s => /[a-záéíóúñü]/i.test(s) && s.length > 1)
@@ -634,7 +596,8 @@ function splitPhrases(txt){
 ============================================================ */
 const S = {
   setId:SETS[0].id, meta:SETS[0], items:SETS[0].items.slice(),
-  mode:"gap", current:-1, running:false, abort:false,
+  mode:"gap", advance:"manual", showEn:true,
+  current:-1, running:false, abort:false,
   voices:[], voice:null, micOk:null, micErr:null, stream:null,
   attempts:{}, modelFiles:{}, checked:{}
 };
@@ -644,158 +607,9 @@ const rate  = () => parseInt($("speed").value,10)/100;
 const reps  = () => parseInt($("reps").value,10);
 const slack = () => parseFloat($("gapslack").value);
 
-/* ============================================================
-   5. VOICES
-============================================================ */
-function loadVoices(){
-  if (!("speechSynthesis" in window)){
-    $("b-voice").textContent = "No speech support in this browser";
-    $("b-voice").className = "badge warn";
-    return;
-  }
-  const all = speechSynthesis.getVoices() || [];
-  S.voices = all.filter(v => (v.lang||"").toLowerCase().startsWith("es"));
-  // macOS and Windows ship novelty voices in every language. They are useless
-  // as a pronunciation model, and they sort to the top alphabetically, so they
-  // must be pushed down explicitly.
-  const NOVELTY = /^(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|bells|bubbles|jester|organ|superstar|trinoids|whisper|wobble|bad news|good news|boing|bahh|albert|cellos|zarvox|junior|ralph|fred|kathy|princess|deranged|hysterical|bruce|agnes|victoria)\b/i;
-  // Known good native Spanish voices, best first.
-  const GOOD = /^(m[oó]nica|jorge|marisol|paulina|diego|juan|carlos|helena|laura|elvira|dalia|lucia|sof[ií]a|pablo|alvaro|álvaro)\b/i;
-  const score = v => {
-    const l = (v.lang||"").toLowerCase().replace("_","-");
-    const n0 = (v.name||"").trim();
-    let n = 0;
-    if (l === "es-es") n += 100; else n += 30;          // European Spanish for GCSE
-    if (NOVELTY.test(n0)) n -= 200;                      // never a cartoon voice
-    if (GOOD.test(n0)) n += 45;
-    if (!v.localService) n += 20;
-    if (/neural|premium|enhanced|natural|siri/i.test(n0)) n += 14;
-    return n;
-  };
-  S.voices.sort((a,b) => score(b) - score(a));
-  const sel = $("voice");
-  sel.innerHTML = "";
-  if (!S.voices.length){
-    sel.innerHTML = "<option>No Spanish voice installed</option>";
-    $("b-voice").textContent = "No Spanish voice installed";
-    $("b-voice").className = "badge warn";
-    flash("warn","<b>No Spanish voice is installed on this device.</b> The model voice will not work until you add one — on Windows: Settings, Time and language, Language and region, add Spanish (Spain) with its speech pack; on a Mac: System Settings, Accessibility, Spoken Content, System Voice, Manage Voices. You can also attach your own recording to any phrase from its <b>⋯</b> menu, which needs no voice at all.");
-    return;
-  }
-  S.voices.forEach((v,i) => {
-    const o = document.createElement("option");
-    o.value = i;
-    o.textContent = v.name + " — " + (v.lang||"").replace("_","-");
-    sel.appendChild(o);
-  });
-  S.voice = S.voices[0];
-  sel.value = "0";
-  const euro = (S.voice.lang||"").toLowerCase().replace("_","-") === "es-es";
-  $("b-voice").textContent = "Voice: " + S.voice.name;
-  $("b-voice").className = euro ? "badge" : "badge warn";
-  if (NOVELTY.test(S.voice.name)){
-    $("b-voice").className = "badge warn";
-    flash("warn","<b>The only Spanish voices this device offers are novelty voices</b> (" + S.voice.name + " and similar), which are useless as a pronunciation model. " +
-      "This is common on iPads and iPhones, where the browser is only shown Apple's Eloquence voice set rather than the proper system voices. " +
-      "Use the drills and the gaps by all means, but attach a real recording as the model from a phrase's <b>⋯</b> menu before trusting what you hear. On a computer, Mónica is the voice to look for under More options.");
-  } else if (!euro){
-    flash("warn","<b>The chosen voice is not European Spanish.</b> " + S.voice.name + " will give you seseo, so c and z will sound like s rather than the th your exam expects. Pick an es-ES voice under More options if one is listed, or install one.");
-  }
-}
-if ("speechSynthesis" in window){
-  loadVoices();
-  speechSynthesis.onvoiceschanged = loadVoices;
-  setTimeout(loadVoices, 500); setTimeout(loadVoices, 1600);
-}
-$("voice").onchange = e => {
-  S.voice = S.voices[parseInt(e.target.value,10)] || S.voice;
-  if (S.voice){
-    $("b-voice").textContent = "Voice: " + S.voice.name;
-    $("b-voice").className =
-      (S.voice.lang||"").toLowerCase().replace("_","-") === "es-es" ? "badge" : "badge warn";
-  }
-};
-
-function flash(kind, html){
-  $("flash").innerHTML = '<div class="flash ' + kind + '">' + html + "</div>";
-}
-
-/* Rough spoken length, used when the browser will not tell us. */
-function estimateMs(text, r){
-  const words = (text || "").split(/\s+/).filter(Boolean).length;
-  return Math.max(1200, (words / (2.6 * Math.max(0.3, r))) * 1000);
-}
-
-/* speak: resolves with the measured duration in ms.
-   Safari drops onstart/onend for an utterance queued straight after
-   cancel(), so only cancel when something is actually speaking, leave a
-   beat afterwards, and never trust "not speaking" before onstart lands. */
-function speak(text, r){
-  return new Promise(res => {
-    if (!("speechSynthesis" in window) || !S.voice){ res(0); return; }
-    let cancelled = false;
-    try {
-      if (speechSynthesis.speaking || speechSynthesis.pending){ speechSynthesis.cancel(); cancelled = true; }
-    } catch(e){}
-
-    setTimeout(() => {
-      const u = new SpeechSynthesisUtterance(text);
-      u.voice = S.voice; u.lang = S.voice.lang || "es-ES"; u.rate = r; u.pitch = 1;
-      const t0 = performance.now();
-      let done = false, started = false;
-      const fin = () => {
-        if (done) return;
-        done = true; clearInterval(w);
-        res(Math.max(600, performance.now() - t0));
-      };
-      u.onstart = () => { started = true; };
-      u.onend = fin;
-      u.onerror = fin;
-      const w = setInterval(() => {
-        const idle = !speechSynthesis.speaking && !speechSynthesis.pending;
-        if (started && idle) fin();
-        // onstart never arrived: fall back to an estimate rather than
-        // cutting the gap to nothing.
-        if (!started && performance.now() - t0 > 2500){
-          const est = estimateMs(text, r);
-          if (performance.now() - t0 >= est || idle){ done = true; clearInterval(w); res(est); }
-        }
-        if (performance.now() - t0 > 40000) fin();
-      }, 120);
-      try { speechSynthesis.speak(u); } catch(e){ fin(); }
-    }, cancelled ? 90 : 0);
-  });
-}
-function playFile(url, r){
-  return new Promise(res => {
-    const a = new Audio(url);
-    a.playbackRate = r;
-    ["preservesPitch","mozPreservesPitch","webkitPreservesPitch"].forEach(k => { if (k in a) a[k] = true; });
-    const t0 = performance.now();
-    a.onended = () => res(performance.now()-t0);
-    a.onerror = () => res(0);
-    a.play().catch(() => res(0));
-  });
-}
-const playModel = (i, r) => S.modelFiles[i] ? playFile(S.modelFiles[i].url, r) : speak(S.items[i].text, r);
-
-/* ============================================================
-   6. MICROPHONE
-============================================================ */
-const micSupported = () => !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
-
-function micBadge(){
-  const b = $("b-mic");
-  if (!micSupported()){ b.textContent = "Recording unavailable here"; b.className = "badge off"; return; }
-  if (S.micOk === true){ b.textContent = "Microphone ready"; b.className = "badge"; }
-  else if (S.micOk === false){ b.textContent = "Microphone blocked"; b.className = "badge warn"; }
-  else { b.textContent = "Microphone not yet allowed"; b.className = "badge off"; }
-}
-/* iPad reports itself as a Mac, hence the touch point test. */
 const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-/* Where are we running? This decides which remedy to offer. */
 function env(){
   const framed = (() => { try { return window.self !== window.top; } catch(e){ return true; } })();
   return {
@@ -807,189 +621,189 @@ function env(){
   };
 }
 
-/* Explain a getUserMedia failure in terms of the actual cause. */
+function flash(kind, html){
+  $("flash").innerHTML = '<div class="flash ' + kind + '"><button class="x" aria-label="Dismiss">&times;</button>' + html + "</div>";
+  const x = $("flash").querySelector(".x");
+  if (x) x.onclick = () => { $("flash").innerHTML = ""; };
+}
+
+/* ============================================================
+   5. VOICES
+============================================================ */
+const NOVELTY = /^(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|bells|bubbles|jester|organ|superstar|trinoids|whisper|wobble|bad news|good news|boing|bahh|albert|cellos|zarvox|junior|ralph|fred|kathy|princess|deranged|hysterical|bruce|agnes|victoria)\b/i;
+const GOOD = /^(m[oó]nica|jorge|marisol|paulina|diego|juan|carlos|helena|laura|elvira|dalia|lucia|sof[ií]a|pablo|alvaro|álvaro)\b/i;
+
+function loadVoices(){
+  if (!("speechSynthesis" in window)){
+    $("b-voice").textContent = "No speech support here"; $("b-voice").className = "badge warn"; return;
+  }
+  const all = speechSynthesis.getVoices() || [];
+  S.voices = all.filter(v => (v.lang||"").toLowerCase().startsWith("es"));
+  const score = v => {
+    const l = (v.lang||"").toLowerCase().replace("_","-");
+    const n0 = (v.name||"").trim();
+    let n = 0;
+    if (l === "es-es") n += 100; else n += 30;
+    if (NOVELTY.test(n0)) n -= 200;
+    if (GOOD.test(n0)) n += 45;
+    if (!v.localService) n += 20;
+    if (/neural|premium|enhanced|natural|siri/i.test(n0)) n += 14;
+    return n;
+  };
+  S.voices.sort((a,b) => score(b) - score(a));
+  const sel = $("voice");
+  sel.innerHTML = "";
+  if (!S.voices.length){
+    sel.innerHTML = "<option>No Spanish voice installed</option>";
+    $("b-voice").textContent = "No Spanish voice"; $("b-voice").className = "badge warn";
+    flash("warn","<b>No Spanish voice is installed on this device</b>, so the model cannot speak. On Windows: Settings, Time and language, Language and region, add Spanish (Spain) with its speech pack. On a Mac: System Settings, Accessibility, Spoken Content, Manage Voices. On Android: Settings, Text to speech output, install the Spanish data. You can also attach your own recording to any phrase from its <b>⋯</b> menu, which needs no voice at all.");
+    return;
+  }
+  S.voices.forEach((v,i) => {
+    const o = document.createElement("option");
+    o.value = i; o.textContent = v.name + " — " + (v.lang||"").replace("_","-");
+    sel.appendChild(o);
+  });
+  S.voice = S.voices[0]; sel.value = "0";
+  const euro = (S.voice.lang||"").toLowerCase().replace("_","-") === "es-es";
+  $("b-voice").textContent = "Voice: " + S.voice.name;
+  $("b-voice").className = euro ? "badge" : "badge warn";
+  if (NOVELTY.test(S.voice.name)){
+    $("b-voice").className = "badge warn";
+    flash("warn","<b>The only Spanish voices here are novelty voices</b> (" + S.voice.name + " and similar), which are no use as a pronunciation model. This is normal on iPads and iPhones, where browsers are only shown Apple's Eloquence set. Use the drills and gaps by all means, but attach a real recording from a phrase's <b>⋯</b> menu before trusting what you hear.");
+  } else if (!euro){
+    flash("warn","<b>This is not a European Spanish voice.</b> " + S.voice.name + " gives seseo, so c and z sound like s rather than the th your exam expects. Pick an es-ES voice under More options if one is listed.");
+  }
+}
+if ("speechSynthesis" in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+  setTimeout(loadVoices, 500); setTimeout(loadVoices, 1600);
+}
+$("voice").onchange = e => {
+  S.voice = S.voices[parseInt(e.target.value,10)] || S.voice;
+  if (S.voice){
+    $("b-voice").textContent = "Voice: " + S.voice.name;
+    $("b-voice").className = (S.voice.lang||"").toLowerCase().replace("_","-") === "es-es" ? "badge" : "badge warn";
+  }
+};
+
+function estimateMs(text, r){
+  const words = (text||"").split(/\s+/).filter(Boolean).length;
+  return Math.max(1200, (words / (2.6 * Math.max(0.3, r))) * 1000);
+}
+
+/* Safari drops onstart/onend for an utterance queued straight after
+   cancel(), so cancel only when needed and never trust "not speaking"
+   before onstart lands. */
+function speak(text, r){
+  return new Promise(res => {
+    if (!("speechSynthesis" in window) || !S.voice){ res(0); return; }
+    let cancelled = false;
+    try { if (speechSynthesis.speaking || speechSynthesis.pending){ speechSynthesis.cancel(); cancelled = true; } } catch(e){}
+    setTimeout(() => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.voice = S.voice; u.lang = S.voice.lang || "es-ES"; u.rate = r; u.pitch = 1;
+      const t0 = performance.now();
+      let done = false, started = false;
+      const fin = () => { if (done) return; done = true; clearInterval(w); res(Math.max(600, performance.now()-t0)); };
+      u.onstart = () => { started = true; };
+      u.onend = fin; u.onerror = fin;
+      const w = setInterval(() => {
+        const idle = !speechSynthesis.speaking && !speechSynthesis.pending;
+        if (started && idle) fin();
+        if (!started && performance.now()-t0 > 2500){
+          const est = estimateMs(text, r);
+          if (performance.now()-t0 >= est || idle){ done = true; clearInterval(w); res(est); }
+        }
+        if (performance.now()-t0 > 40000) fin();
+      }, 120);
+      try { speechSynthesis.speak(u); } catch(e){ fin(); }
+    }, cancelled ? 90 : 0);
+  });
+}
+
+function playFile(url, r){
+  return new Promise(res => {
+    const a = new Audio(url);
+    a.playbackRate = r;
+    ["preservesPitch","mozPreservesPitch","webkitPreservesPitch"].forEach(k => { if (k in a) a[k] = true; });
+    const t0 = performance.now();
+    a.onended = () => res(performance.now()-t0);
+    a.onerror = () => res(0);
+    a.play().catch(() => res(0));
+  });
+}
+const playModel = (i,r) => S.modelFiles[i] ? playFile(S.modelFiles[i].url, r) : speak(S.items[i].text, r);
+
+/* ============================================================
+   6. MICROPHONE
+============================================================ */
+const micSupported = () => !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+
+function micBadge(){
+  const b = $("b-mic");
+  if (IS_IOS){ b.textContent = "No recording on iOS"; b.className = "badge warn"; return; }
+  if (!micSupported()){ b.textContent = "Recording unavailable"; b.className = "badge off"; return; }
+  if (S.micOk === true){ b.textContent = "Microphone ready"; b.className = "badge"; }
+  else if (S.micOk === false){ b.textContent = "Microphone blocked"; b.className = "badge warn"; }
+  else { b.textContent = "Microphone not yet allowed"; b.className = "badge off"; }
+}
+
 function micRemedy(errName){
   const e = env();
+  const serve = "Serve the folder from a local web server instead: open Terminal or Command Prompt, go to the folder and run <code>python3 -m http.server 8765</code>, then visit <code>http://localhost:8765/</code>.";
+
   if (errName === "ios")
-    return "<b>On an iPhone or iPad, recording and the model voice cannot be used together.</b> " +
-      "There is a long standing fault in Safari's audio handling on iOS: once the page speaks, the microphone track is silently muted and nothing in the page can unmute it. " +
-      "Every browser on iOS uses Safari's engine underneath, so switching to Chrome or Firefox on the same device changes nothing." +
-      "<br><br><b>On an iPad or iPhone, use it this way:</b> listen, repeat into the gaps out loud, and use the drills. That is most of the value and it all works. " +
-      "For record and compare, use a computer or an Android phone, or record in the Voice Memos app and attach the clip from a phrase's <b>⋯</b> menu, which works fine here.";
-  const serve = "<b>The fix that always works:</b> serve the file from a local web server, which browsers treat as a proper secure origin. " +
-    "Open Terminal, then:<br><code style=\"display:block;background:#f1efe9;padding:8px 10px;border-radius:7px;margin:7px 0;font-size:12.5px\">" +
-    "cd ~/Downloads<br>python3 -m http.server 8765</code>" +
-    "and visit <code>http://localhost:8765/spanish-play-along.html</code>. Leave Terminal open while you use it. " +
-    "If your Mac asks to install the command line developer tools, say yes — that is a one time step.";
-
-  if (e.framed)
-    return "<b>Recording cannot work on this hosted page.</b> It runs inside a sandboxed frame that withholds microphone permission, " +
-           "so the browser refuses before it even asks you. Nothing you change in your settings will alter that. " +
-           "Download the file and " + serve.replace("<b>The fix that always works:</b> serve","serve") +
-           "<br><br>In the meantime you can still record in the Voice Memos app and attach the clip from a phrase's <b>⋯</b> menu, which works here.";
-
-  if (e.isFile)
-    return "<b>Chrome and Safari block the microphone on pages opened straight from disk</b> (a <code>file://</code> address), by design, " +
-           "and they do it without prompting. This is the most common reason Record me does nothing. " +
-           serve + "<br><br>Firefox is often more permissive with local files, so that is worth a try too. " +
-           "Or record in Voice Memos and attach the clip from a phrase's <b>⋯</b> menu.";
-
+    return "<b>On an iPhone or iPad, recording cannot be used.</b> Safari mutes the microphone the moment the page speaks, and nothing in the page can unmute it. Every browser on iOS uses Safari underneath, so switching browser changes nothing." +
+      "<br><br><b>Use it this way instead:</b> listen, repeat into the gaps out loud, and work through the drills. That is most of the value and all of it works. For record and compare, use a computer or an Android phone, or record in Voice Memos and attach the clip from a phrase's <b>⋯</b> menu.";
+  if (errName === "framed")
+    return "<b>Recording cannot work on an embedded copy of this page.</b> It is inside a frame, which browsers refuse microphone permission to. Open the page at its own address instead.";
   if (errName === "denied-sticky")
-    return "<b>Your browser has this site on its blocked list for the microphone, and it will not ask you again.</b> " +
-           "That is why clicking Record me appears to do nothing: there is no prompt coming. To clear it:" +
-           "<br>• <b>Chrome:</b> click the icon at the left of the address bar, set Microphone to Allow, then reload." +
-           "<br>• <b>Safari:</b> Safari menu, Settings for This Website, set Microphone to Allow, then reload." +
-           "<br>• <b>On a Mac, also check</b> System Settings, Privacy and Security, Microphone, and switch your browser on there. A browser blocked at that level never prompts either.";
-
+    return "<b>Your browser has this site on its blocked list for the microphone, and it will not ask again.</b> That is why the button appears to do nothing. Click the icon at the left of the address bar, set Microphone to Allow, and reload. On a Mac, also check System Settings, Privacy and Security, Microphone, and switch your browser on there.";
   if (errName === "no-input")
-    return "<b>This device has no microphone the browser can see.</b> A desktop Mac usually has none built in, so you will need headphones with a mic, a USB microphone or a webcam plugged in. " +
-           "Check System Settings, Sound, Input to confirm the Mac can see it, then reload this page.";
-
+    return "<b>This device has no microphone the browser can see.</b> A desktop Mac usually has none built in, so you will need headphones with a mic, a USB microphone or a webcam. Check the sound input settings, then reload.";
+  if (e.isFile)
+    return "<b>Chrome and Safari block the microphone on pages opened straight from disk.</b> " + serve;
   if (errName === "NotAllowedError")
-    return "<b>Permission was refused.</b> If you dismissed the prompt, click the icon at the left of the address bar, set the microphone to Allow and reload. " +
-           "On a Mac also check System Settings, Privacy and Security, Microphone, and make sure your browser is switched on there.";
-  if (errName === "NotFoundError" || errName === "OverconstrainedError")
-    return "<b>No microphone was found.</b> A Mac mini has no built in microphone, so you will need headphones with a mic, a USB microphone or a webcam plugged in. " +
-           "Check System Settings, Sound, Input to confirm the Mac can see it.";
+    return "<b>Permission was refused.</b> Click the icon at the left of the address bar, set Microphone to Allow, and reload. On a Mac also check System Settings, Privacy and Security, Microphone.";
   if (errName === "NotReadableError" || errName === "AbortError")
-    return "<b>The microphone exists but could not be opened.</b> Another app may be holding it — quit Zoom, Teams, GarageBand or anything else using audio, then try again.";
-  if (errName === "SecurityError")
-    return "<b>The browser refused on security grounds.</b> " + serve;
-  return "<b>The microphone could not be started</b> (" + (errName || "unknown error") + "). " + serve;
+    return "<b>The microphone exists but could not be opened.</b> Another app may be holding it. Quit anything else using audio and try again.";
+  if (errName === "unsupported")
+    return "<b>This browser cannot record at all.</b> Use a current Chrome, Edge, Firefox or Safari.";
+  return "<b>The microphone could not be started</b> (" + (errName || "unknown") + ").";
 }
 
-function micBlockedNotice(errName){
-  flash("warn", micRemedy(errName) + "<br><br>Everything else — speed, gaps, repeats, compare and the advice — works normally without a microphone.");
-}
-
-async function ensureMic(){
-  if (!micSupported()){
-    S.micOk = false; S.micErr = "unsupported"; micBadge();
-    flash("warn","<b>This browser has no recording support at all</b> (no MediaRecorder). Use a current Chrome, Firefox or Safari.");
-    return false;
-  }
+async function ensureMic(quiet){
+  const show = m => { if (!quiet) flash("warn", micRemedy(m)); };
+  if (IS_IOS){ S.micOk = false; S.micErr = "ios"; micBadge(); show("ios"); return false; }
+  if (!micSupported()){ S.micOk = false; S.micErr = "unsupported"; micBadge(); show("unsupported"); return false; }
+  if (env().framed){ S.micOk = false; S.micErr = "framed"; micBadge(); show("framed"); return false; }
   if (S.stream){
     const t = S.stream.getAudioTracks()[0];
     if (t && t.readyState === "live") return true;
-    S.stream = null;   // track died; ask again
+    S.stream = null;
   }
-  if (IS_IOS){
-    S.micOk = false; S.micErr = "ios"; micBadge(); micBlockedNotice("ios");
-    return false;
-  }
-  // Pre-flight. A browser that has already recorded "denied" will never prompt
-  // again, so getUserMedia fails instantly and the click looks like it did nothing.
   try {
     if (navigator.permissions && navigator.permissions.query){
       const p = await navigator.permissions.query({ name:"microphone" });
-      if (p.state === "denied"){
-        S.micOk = false; S.micErr = "denied-sticky"; micBadge(); micBlockedNotice("denied-sticky");
-        return false;
-      }
+      if (p.state === "denied"){ S.micOk = false; S.micErr = "denied-sticky"; micBadge(); show("denied-sticky"); return false; }
     }
-  } catch(e){ /* Safari cannot query this; fall through and just ask */ }
+  } catch(e){}
   try {
     const devs = await navigator.mediaDevices.enumerateDevices();
     if (devs.filter(d => d.kind === "audioinput").length === 0){
-      S.micOk = false; S.micErr = "no-input"; micBadge(); micBlockedNotice("no-input");
-      return false;
+      S.micOk = false; S.micErr = "no-input"; micBadge(); show("no-input"); return false;
     }
-  } catch(e){ /* not fatal; try anyway */ }
-
+  } catch(e){}
   try {
     S.stream = await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true, autoGainControl:true }});
-    S.micOk = true; S.micErr = null; micBadge(); $("flash").innerHTML = ""; return true;
+    S.micOk = true; S.micErr = null; micBadge(); return true;
   } catch(e){
-    S.micOk = false; S.micErr = (e && e.name) || "unknown";
-    micBadge(); micBlockedNotice(S.micErr);
-    return false;
+    S.micOk = false; S.micErr = (e && e.name) || "unknown"; micBadge(); show(S.micErr); return false;
   }
 }
 
-/* ---- full diagnostic, printed into the page ---- */
-async function diagnose(){
-  const out = [];
-  const L = (k,v) => out.push(k.padEnd(26) + v);
-  const e = env();
-  out.push("MICROPHONE DIAGNOSTIC  " + new Date().toLocaleString());
-  out.push("".padEnd(52,"─"));
-  L("page address", location.protocol + "//" + (location.host || "(local file)"));
-  L("inside a frame", e.framed ? "YES — hosted sandbox, mic withheld" : "no");
-  L("secure context", e.secure ? "yes" : "NO");
-  L("served from localhost", e.isLocalhost ? "yes" : "no");
-  L("opened from disk", e.isFile ? "YES — Chrome/Safari block the mic" : "no");
-  L("user agent", navigator.userAgent.slice(0,64));
-  out.push("");
-  L("navigator.mediaDevices", navigator.mediaDevices ? "present" : "MISSING");
-  L("getUserMedia", (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? "present" : "MISSING");
-  L("MediaRecorder", window.MediaRecorder ? "present" : "MISSING");
-  L("AudioContext", (window.AudioContext || window.webkitAudioContext) ? "present" : "MISSING");
-  L("speechSynthesis", ("speechSynthesis" in window) ? "present" : "MISSING");
-  L("Spanish voices found", String(S.voices.length));
-
-  if (window.MediaRecorder){
-    const ok = ["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus","audio/mp4"]
-      .filter(m => { try { return MediaRecorder.isTypeSupported(m); } catch(x){ return false; }});
-    L("recording formats", ok.length ? ok.join(", ") : "NONE SUPPORTED");
-  }
-
-  try {
-    if (navigator.permissions && navigator.permissions.query){
-      const p = await navigator.permissions.query({ name:"microphone" });
-      L("permission state", p.state);
-    } else L("permission state", "not queryable in this browser");
-  } catch(x){ L("permission state", "not queryable (" + (x.name||"error") + ")"); }
-
-  try {
-    const devs = await navigator.mediaDevices.enumerateDevices();
-    const ins = devs.filter(d => d.kind === "audioinput");
-    L("audio inputs seen", String(ins.length) + (ins.length && !ins[0].label ? " (labels hidden until allowed)" : ""));
-    ins.slice(0,4).forEach((d,i) => L("  input " + (i+1), d.label || "(unnamed)"));
-  } catch(x){ L("audio inputs seen", "could not enumerate (" + (x.name||"error") + ")"); }
-
-  out.push("");
-  out.push("LIVE TEST — recording 1.5 seconds…");
-  $("diag").style.display = "block";
-  $("diag").textContent = out.join("\n");
-
-  let verdict = "";
-  try {
-    const stream = S.stream && S.stream.getAudioTracks()[0] && S.stream.getAudioTracks()[0].readyState === "live"
-      ? S.stream
-      : await navigator.mediaDevices.getUserMedia({ audio:true });
-    S.stream = stream; S.micOk = true; S.micErr = null; micBadge();
-    const tr = stream.getAudioTracks()[0];
-    L("track obtained", tr ? (tr.label || "(unnamed)") : "none");
-    L("track state", tr ? tr.readyState + (tr.muted ? " but MUTED" : "") : "n/a");
-
-    const blob = await recordFor(1500);
-    L("recording produced", blob ? (blob.size + " bytes, " + blob.type) : "NOTHING — MediaRecorder gave no data");
-    if (blob && blob.size > 0){
-      const a = await analyse(blob);
-      if (a){
-        L("decoded length", a.duration.toFixed(2) + " s");
-        L("sound detected in", Math.round(a.coverage*100) + "% of it");
-        verdict = a.silent
-          ? "WORKING, but silent. The microphone opened and recorded, yet no sound came through. Check the right input is selected in System Settings, Sound, Input, and that it is not muted."
-          : "WORKING. The microphone opened, recorded and decoded. Record me should work on this page.";
-      } else {
-        L("decoded length", "COULD NOT DECODE");
-        verdict = "The microphone recorded " + blob.size + " bytes but this browser could not decode them, so timing feedback will be blank. Compare playback may still work.";
-      }
-    } else {
-      verdict = "The microphone opened but produced no audio data. Try a different browser, or a different input device.";
-    }
-  } catch(x){
-    L("LIVE TEST FAILED", (x && x.name) || "unknown error");
-    L("message", (x && x.message) ? x.message.slice(0,70) : "");
-    S.micOk = false; S.micErr = (x && x.name) || "unknown"; micBadge();
-    verdict = "BLOCKED — see the explanation above the report.";
-    micBlockedNotice(S.micErr);
-  }
-  out.push("");
-  out.push("VERDICT: " + verdict);
-  $("diag").textContent = out.join("\n");
-}
 function recMime(){
   for (const m of ["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus","audio/mp4"]){
     try { if (MediaRecorder.isTypeSupported(m)) return m; } catch(e){}
@@ -1015,10 +829,8 @@ function recordFor(ms){
    7. TIMING ANALYSIS  (never pronunciation)
 ============================================================ */
 let AC = null;
-function ac(){
-  if (!AC){ const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AC = new C(); }
-  return AC;
-}
+function ac(){ if (!AC){ const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AC = new C(); } return AC; }
+
 async function analyse(blob){
   const c = ac(); if (!c || !blob) return null;
   let buf;
@@ -1049,21 +861,20 @@ async function analyse(blob){
   };
 }
 
-/* Timing advice, derived only from measurement */
 function timingTips(a, modelSecs){
   const out = [];
   if (!a) return out;
   if (a.silent){ out.push("Nothing was picked up on that take. Check the microphone, then go again."); return out; }
   if (a.onset != null && a.onset > 1.1)
-    out.push("You waited " + a.onset.toFixed(1) + " seconds before starting. In the exam the examiner hears that pause as hesitation — begin as soon as the model stops.");
+    out.push("You waited " + a.onset.toFixed(1) + " seconds before starting. In the exam that pause reads as hesitation, so begin as soon as the model stops.");
   if (a.coverage < 0.35)
-    out.push("You only spoke for about " + Math.round(a.coverage*100) + "% of the gap, so something was left unsaid or you stopped partway. Slow the model down and try the whole phrase.");
+    out.push("You spoke for only about " + Math.round(a.coverage*100) + "% of the gap, so something was left unsaid or you stopped partway. Slow the model down and try the whole phrase.");
   if (modelSecs && a.span > modelSecs*1.45 && a.coverage >= 0.35)
-    out.push("Your version ran noticeably longer than the model. That usually means pausing between words rather than linking them. Try reading it as one long word, then put the rhythm back.");
+    out.push("Your version ran noticeably longer than the model, which usually means pausing between words rather than linking them. Read it as one long word, then put the rhythm back.");
   if (modelSecs && a.span && a.span < modelSecs*0.6 && !a.silent)
-    out.push("Your version was much shorter than the model, which often means syllables or whole words were dropped. Compare them again and look for what went missing.");
+    out.push("Your version was much shorter than the model, which often means syllables or whole words went missing. Compare them again and listen for what dropped out.");
   if (!out.length)
-    out.push("Your timing matched the model well. Now it is purely a question of the sounds, so use Compare and listen hard to the ones below.");
+    out.push("Your timing matched the model well, so it is purely a question of the sounds now. Use Compare and listen hard to the ones below.");
   return out;
 }
 
@@ -1109,7 +920,10 @@ function renderList(){
 
     const head = document.createElement("div");
     head.className = "phhead";
-    head.innerHTML = '<span class="phn">'+(i+1)+'</span><span class="phtext">'+item.text+"</span>";
+    const en = (S.showEn && item.en)
+      ? '<div class="phen">' + item.en + "</div>" : "";
+    head.innerHTML = '<span class="phn">'+(i+1)+'</span><span class="phbody">' +
+                     '<div class="phtext">'+item.text+"</div>" + en + "</span>";
     li.appendChild(head);
 
     const tags = item.tags || [];
@@ -1122,14 +936,9 @@ function renderList(){
     const acts = document.createElement("div"); acts.className = "acts";
 
     const bm = document.createElement("button");
-    bm.className = "btn"; bm.textContent = "▶ Model";
+    bm.className = "btn"; bm.textContent = "▶ Listen";
     bm.onclick = () => playModel(i, rate());
     acts.appendChild(bm);
-
-    const bl = document.createElement("button");
-    bl.className = "btn"; bl.textContent = "Practise this one";
-    bl.onclick = () => runOne(i);
-    acts.appendChild(bl);
 
     const br = document.createElement("button");
     br.className = "btn prime"; br.textContent = "● Record me";
@@ -1147,15 +956,19 @@ function renderList(){
       acts.appendChild(bj);
     }
 
-    // kebab menu
     const kb = document.createElement("span"); kb.className = "kebab";
     const kbtn = document.createElement("button");
-    kbtn.className = "btn"; kbtn.textContent = "⋯"; kbtn.title = "Attach audio";
+    kbtn.className = "btn"; kbtn.textContent = "⋯"; kbtn.title = "More for this phrase";
     kbtn.onclick = (ev) => {
       ev.stopPropagation();
       const open = kb.querySelector(".menu");
       closeMenus(); if (open) return;
       const m = document.createElement("div"); m.className = "menu";
+
+      const b0 = document.createElement("button");
+      b0.textContent = "Practise just this phrase";
+      b0.onclick = () => { closeMenus(); runOne(i); };
+      m.appendChild(b0);
 
       const l1 = document.createElement("label");
       l1.textContent = S.modelFiles[i] ? "Replace model audio…" : "Use my own model audio…";
@@ -1186,12 +999,10 @@ function renderList(){
     kb.appendChild(kbtn); acts.appendChild(kb);
     li.appendChild(acts);
 
-    // feedback + advice
     const at = S.attempts[i];
     if (at){
       const fb = document.createElement("div"); fb.className = "fb";
       let html = '<div class="fbh">After listening back</div>';
-
       if (at.a && at.a.coverage != null){
         const pct = Math.round(Math.min(1, at.a.coverage)*100);
         html += '<div class="timing"><span>Spoke for '+pct+'% of the gap</span>' +
@@ -1199,27 +1010,22 @@ function renderList(){
       }
       const tt = timingTips(at.a, at.modelSecs);
       if (tt.length) html += '<ul class="tips">'+tt.map(t => "<li>"+t+"</li>").join("")+"</ul>";
-
       html += '<div class="checks"><p>Play <b>Compare</b>, then tick anything that did not match. Your ear is the judge here, not the software.</p>';
       tags.forEach(k => {
         const s = SOUNDS[k]; if (!s) return;
         const on = S.checked[i] && S.checked[i][k];
-        html += '<label class="ck"><input type="checkbox" data-i="'+i+'" data-k="'+k+'"'+(on?" checked":"")+'>' +
-                "<span>"+s.check+"</span></label>";
+        html += '<label class="ck"><input type="checkbox" data-i="'+i+'" data-k="'+k+'"'+(on?" checked":"")+'><span>'+s.check+"</span></label>";
       });
       html += "</div>";
-
       const picked = Object.keys((S.checked[i]||{})).filter(k => S.checked[i][k]);
       picked.forEach(k => {
         const s = SOUNDS[k]; if (!s) return;
-        html += '<div class="advice"><h4>'+s.label+"</h4>" +
-                "<p>"+s.what+"</p><p><b>What to do:</b> "+s.how+"</p>" +
+        html += '<div class="advice"><h4>'+s.label+"</h4><p>"+s.what+"</p><p><b>What to do:</b> "+s.how+"</p>" +
                 '<button class="btn drill" data-drill="'+s.drill+'">Drill this sound</button></div>';
       });
       fb.innerHTML = html;
       li.appendChild(fb);
     }
-
     host.appendChild(li);
   });
 
@@ -1235,7 +1041,7 @@ function renderList(){
     b.onclick = () => {
       const id = b.dataset.drill;
       loadSet(id, true);
-      flash("ok","Loaded the <b>"+(SETS.find(s=>s.id===id)||{}).title+"</b> drill. Turn the repeats up to four or five and keep the speed low until it is secure.");
+      flash("ok","Loaded the <b>"+((SETS.find(s=>s.id===id)||{}).title)+"</b> drill. Turn the repeats up to four or five and keep the speed low until it is secure.");
     };
   });
   mark(S.current);
@@ -1247,10 +1053,9 @@ function mark(idx){
     el.classList.toggle("on", i===idx);
     el.classList.toggle("done", idx>=0 && i<idx);
   });
-  if (idx>=0){ const el = $("ph-"+idx); if (el) el.scrollIntoView({behavior:"smooth", block:"center"}); }
+  if (idx>=0){ const el = $("ph-"+idx); if (el && el.scrollIntoView) el.scrollIntoView({behavior:"smooth", block:"center"}); }
 }
 
-/* cue banner */
 let cueTimer = null;
 function cue(stateTxt, kind, text, ms){
   $("cueState").textContent = stateTxt;
@@ -1268,32 +1073,45 @@ function cue(stateTxt, kind, text, ms){
     if (p >= 1) clearInterval(cueTimer);
   }, 50);
 }
-function cuePos(i){
-  $("cuePos").textContent = (i>=0) ? ("Phrase "+(i+1)+" of "+S.items.length) : "";
-}
+function cuePos(i){ $("cuePos").textContent = (i>=0) ? ("Phrase "+(i+1)+" of "+S.items.length) : ""; }
 
 /* ============================================================
    9. RUN ENGINE
 ============================================================ */
+let nextResolve = null;
+function waitForNext(i){
+  return new Promise(res => {
+    nextResolve = res;
+    $("next").disabled = false;
+    cue("Paused","wait","Compare or record again, then press Next.",null);
+    cuePos(i);
+  });
+}
+function doNext(){
+  if (!nextResolve) return;
+  const r = nextResolve; nextResolve = null;
+  $("next").disabled = true;
+  r();
+}
+
 async function doPhrase(i, withRec){
   for (let r=0; r<reps(); r++){
     if (S.abort) return;
-    const tag = reps()>1 ? " · repeat "+(r+1)+" of "+reps() : "";
+    const tag = reps()>1 ? "repeat "+(r+1)+" of "+reps() : "";
 
     if (S.mode === "along"){
-      cue("Speak along","turn", S.items[i].text.slice(0,54)+tag, null);
+      cue("Speak along","turn", tag, null);
       await playModel(i, rate());
       continue;
     }
-
-    cue("Listen","listen", tag ? tag.replace(" · ","") : "", null);
+    cue("Listen","listen", tag, null);
     const dur = await playModel(i, rate());
     if (S.abort) return;
     if (S.mode === "listen"){ await sleep(260); continue; }
 
     const gap = Math.max(900, Math.round(dur*slack()));
     const last = r === reps()-1;
-    cue("Your turn","turn","", gap);
+    cue("Your turn","turn", tag, gap);
 
     if (withRec && S.stream){
       const blob = await recordFor(gap);
@@ -1303,7 +1121,7 @@ async function doPhrase(i, withRec){
         S.attempts[i] = { url:URL.createObjectURL(blob), a, modelSecs: dur/1000 };
         renderList();
       } else if ((!blob || !blob.size) && last){
-        flash("warn","<b>Nothing was captured for phrase " + (i+1) + ".</b> Press <b>Check microphone</b> at the top for a full report.");
+        flash("warn","<b>Nothing was captured for phrase "+(i+1)+".</b> Press <b>Test microphone</b> at the top for a full report.");
       }
     } else {
       await sleep(gap);
@@ -1317,16 +1135,18 @@ async function runAll(){
   S.running = true; S.abort = false;
   $("run").disabled = true; $("stop").disabled = false;
   const withRec = S.mode === "gap" ? await ensureMic() : false;
-  for (let i=0;i<S.items.length;i++){
+
+  for (let i=0; i<S.items.length; i++){
     if (S.abort) break;
     S.current = i; mark(i); cuePos(i);
     await doPhrase(i, withRec);
+    if (S.abort) break;
+    if (S.advance === "manual" && i < S.items.length-1){
+      await waitForNext(i);
+      if (S.abort) break;
+    }
   }
-  S.current = -1; mark(-1); cuePos(-1);
-  S.running = false; $("run").disabled = false; $("stop").disabled = true;
-  if (!S.abort){
-    cue("Done","listen", withRec ? "Press Compare on a phrase to hear both, then tick what did not match." : "", null);
-  }
+  finishRun(withRec);
 }
 
 async function runOne(i){
@@ -1336,9 +1156,14 @@ async function runOne(i){
   const withRec = S.mode === "gap" ? await ensureMic() : false;
   S.current = i; mark(i); cuePos(i);
   await doPhrase(i, withRec);
+  finishRun(withRec);
+}
+
+function finishRun(withRec){
   S.current = -1; mark(-1); cuePos(-1);
-  S.running = false; $("run").disabled = false; $("stop").disabled = true;
-  cue("Done","listen","",null);
+  S.running = false;
+  $("run").disabled = false; $("stop").disabled = true; $("next").disabled = true;
+  if (!S.abort) cue("Done","listen", withRec ? "Press Compare on any phrase to hear both." : "", null);
 }
 
 async function recordTurn(i, btn){
@@ -1354,14 +1179,14 @@ async function recordTurn(i, btn){
       a.onerror = () => res(0);
     });
   }
-  if (!est) est = (S.items[i].text.split(/\s+/).length / 2.6) * 1000 / rate();
+  if (!est) est = estimateMs(S.items[i].text, rate());
   const gap = Math.max(1300, Math.round(est*slack()));
   cue("Your turn","turn","Recording phrase "+(i+1), gap);
   const blob = await recordFor(gap);
   btn.textContent = old; btn.disabled = false;
-  cue("Done","listen","",null);
+  cue("Ready","listen","",null);
   if (!blob || !blob.size){
-    flash("warn","<b>The microphone opened but captured nothing.</b> Press <b>Check microphone</b> at the top for a full report, which will say exactly where it broke.");
+    flash("warn","<b>The microphone opened but captured nothing.</b> Press <b>Test microphone</b> at the top for a full report.");
     return;
   }
   const a = await analyse(blob);
@@ -1371,28 +1196,109 @@ async function recordTurn(i, btn){
 
 async function compare(i){
   const at = S.attempts[i]; if (!at) return;
-  S.abort = false;
-  cue("Model","listen","",null);          await playModel(i, rate());
-  if (S.abort) return; await sleep(220);
+  const wasAbort = S.abort; S.abort = false;
+  cue("Model","listen","",null);        await playModel(i, rate());
+  await sleep(220);
   cue("You","turn","",null);
   await new Promise(res => { const a = new Audio(at.url); a.onended = res; a.onerror = res; a.play().catch(res); });
-  if (S.abort) return; await sleep(220);
-  cue("Model again","listen","",null);    await playModel(i, rate());
-  cue("Which sounds did not match?","listen","Tick them below.",null);
+  await sleep(220);
+  cue("Model again","listen","",null);  await playModel(i, rate());
+  cue(nextResolve ? "Paused" : "Ready", nextResolve ? "wait" : "listen",
+      nextResolve ? "Tick what did not match, then press Next." : "Which sounds did not match?", null);
+  S.abort = wasAbort;
 }
 
 function stopRun(){
   S.abort = true; S.running = false;
+  if (nextResolve){ const r = nextResolve; nextResolve = null; r(); }
   try { speechSynthesis.cancel(); } catch(e){}
   clearInterval(cueTimer);
   $("barFill").style.width = "0%";
-  $("run").disabled = false; $("stop").disabled = true;
+  $("run").disabled = false; $("stop").disabled = true; $("next").disabled = true;
   S.current = -1; mark(-1); cuePos(-1);
   cue("Ready","listen","",null);
 }
 
 /* ============================================================
-   10. UPLOAD AND TEXT EXTRACTION
+   10. DIAGNOSTIC  (report only, no separate message box)
+============================================================ */
+async function diagnose(){
+  const out = [];
+  const L = (k,v) => out.push(String(k).padEnd(26) + v);
+  const e = env();
+  out.push("MICROPHONE TEST  " + new Date().toLocaleString());
+  out.push("".padEnd(52,"─"));
+  L("page address", location.protocol + "//" + (location.host || "(local file)"));
+  L("inside a frame", e.framed ? "YES" : "no");
+  L("secure context", e.secure ? "yes" : "NO");
+  L("opened from disk", e.isFile ? "YES" : "no");
+  L("platform", IS_IOS ? "iPhone or iPad" : (navigator.platform || "unknown"));
+  L("browser", navigator.userAgent.slice(0,58));
+  out.push("");
+  L("getUserMedia", (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? "present" : "MISSING");
+  L("MediaRecorder", window.MediaRecorder ? "present" : "MISSING");
+  L("AudioContext", (window.AudioContext || window.webkitAudioContext) ? "present" : "MISSING");
+  L("speechSynthesis", ("speechSynthesis" in window) ? "present" : "MISSING");
+  L("Spanish voices", S.voices.length + (S.voice ? "  (using " + S.voice.name + ")" : ""));
+  if (window.MediaRecorder){
+    const ok = ["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus","audio/mp4"]
+      .filter(m => { try { return MediaRecorder.isTypeSupported(m); } catch(x){ return false; }});
+    L("recording formats", ok.length ? ok.join(", ") : "NONE");
+  }
+  try {
+    if (navigator.permissions && navigator.permissions.query){
+      L("permission state", (await navigator.permissions.query({name:"microphone"})).state);
+    } else L("permission state", "not queryable here");
+  } catch(x){ L("permission state", "not queryable here"); }
+  try {
+    const devs = await navigator.mediaDevices.enumerateDevices();
+    const ins = devs.filter(d => d.kind === "audioinput");
+    L("audio inputs", String(ins.length) + (ins.length && !ins[0].label ? "  (names hidden until allowed)" : ""));
+    ins.slice(0,3).forEach((d,i) => L("  input "+(i+1), d.label || "(unnamed)"));
+  } catch(x){ L("audio inputs", "could not check"); }
+
+  const render = (verdict, advice) => {
+    const body = out.join("\n") + (verdict ? "\n\nVERDICT: " + verdict : "") +
+      (advice ? "\n\n" + advice.replace(/<br\s*\/?>/gi,"\n").replace(/<[^>]+>/g,"") : "");
+    $("diag").textContent = body;
+    $("diag").style.display = "block";
+  };
+
+  out.push(""); out.push("LIVE TEST — recording 1.5 seconds…");
+  render("", "");
+
+  if (IS_IOS){ render("NOT AVAILABLE on iPhone or iPad.", micRemedy("ios")); micBadge(); return; }
+
+  try {
+    const ok = await ensureMic(true);
+    if (!ok){ render("BLOCKED.", micRemedy(S.micErr)); return; }
+    const tr = S.stream.getAudioTracks()[0];
+    L("microphone in use", tr ? (tr.label || "(unnamed)") : "none");
+    L("track state", tr ? tr.readyState + (tr.muted ? "  but MUTED" : "") : "n/a");
+    const blob = await recordFor(1500);
+    L("recording produced", blob ? (blob.size + " bytes") : "NOTHING");
+    if (blob && blob.size){
+      const a = await analyse(blob);
+      if (a){
+        L("decoded length", a.duration.toFixed(2) + " s");
+        L("sound detected in", Math.round(a.coverage*100) + "% of it");
+        render(a.silent
+          ? "WORKING, but silent. It opened and recorded, yet no sound came through. Check the right input is selected and not muted."
+          : "WORKING. Record me will work on this page.", "");
+      } else {
+        render("Recorded " + blob.size + " bytes but this browser could not decode them, so timing feedback will be blank.", "");
+      }
+    } else {
+      render("The microphone opened but produced no audio. Try a different browser or input device.", "");
+    }
+  } catch(x){
+    L("LIVE TEST FAILED", (x && x.name) || "unknown");
+    render("BLOCKED.", micRemedy((x && x.name) || "unknown"));
+  }
+}
+
+/* ============================================================
+   11. UPLOAD
 ============================================================ */
 function loadScript(src){
   return new Promise((ok,no) => {
@@ -1401,59 +1307,48 @@ function loadScript(src){
     document.head.appendChild(s);
   });
 }
-
 async function extractText(file){
   const name = (file.name||"").toLowerCase();
-  if (name.endsWith(".txt") || (file.type||"").startsWith("text/")){
-    return await file.text();
-  }
+  if (name.endsWith(".txt") || (file.type||"").startsWith("text/")) return await file.text();
   if (name.endsWith(".docx")){
     if (!window.mammoth) await loadScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js");
-    const buf = await file.arrayBuffer();
-    const r = await window.mammoth.extractRawText({ arrayBuffer: buf });
+    const r = await window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
     return r.value || "";
   }
   if (name.endsWith(".pdf")){
     if (!window.pdfjsLib){
       await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
       if (window.pdfjsLib)
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
     }
-    const buf = await file.arrayBuffer();
-    const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
-    let out = "";
-    const n = Math.min(pdf.numPages, 12);
-    for (let p=1; p<=n; p++){
-      const page = await pdf.getPage(p);
-      const tc = await page.getTextContent();
-      out += tc.items.map(it => it.str).join(" ") + "\n";
+    const pdf = await window.pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+    let outTxt = "";
+    for (let p=1; p<=Math.min(pdf.numPages,12); p++){
+      const tc = await (await pdf.getPage(p)).getTextContent();
+      outTxt += tc.items.map(it => it.str).join(" ") + "\n";
     }
-    return out;
+    return outTxt;
   }
   throw new Error("unsupported");
 }
-
 async function handleFile(file){
-  const msg = $("ownMsg");
-  msg.className = "msg";
+  const msg = $("ownMsg"); msg.className = "msg";
   msg.textContent = "Reading " + file.name + "…";
   try {
     const txt = await extractText(file);
     if (!txt || !txt.trim()){
       msg.className = "msg err";
-      msg.innerHTML = "No text found in that file. If it is a scan or a photograph there is nothing to read — paste the Spanish into the box instead.";
+      msg.textContent = "No text found in that file. If it is a scan there is nothing to read, so paste the Spanish instead.";
       return;
     }
     $("own").value = txt.trim();
-    msg.textContent = "Read " + txt.trim().split(/\s+/).length + " words. Check it below, then press Load as phrases.";
+    msg.textContent = "Read " + txt.trim().split(/\s+/).length + " words.";
     loadOwn();
   } catch(e){
     msg.className = "msg err";
-    msg.innerHTML = "Could not read that file. Word (.docx), PDF and .txt are supported — for anything else, paste the text into the box.";
+    msg.textContent = "Could not read that file. Word, PDF and plain text are supported; otherwise paste the text in.";
   }
 }
-
 const drop = $("drop");
 drop.onclick = () => $("file").click();
 $("file").onchange = e => { const f = e.target.files && e.target.files[0]; if (f) handleFile(f); };
@@ -1471,57 +1366,47 @@ function loadOwn(){
   const parts = splitPhrases(txt);
   if (!parts.length){ msg.className = "msg err"; msg.textContent = "Could not find any phrases in that."; return; }
   stopRun();
-  S.setId = "__own";
-  S.meta = { title:"Your material", note:"", kind:"passage" };
-  S.items = parts.map(t => ({ text:t, tags: detectTags(t) }));
+  S.setId = "__own"; S.meta = { title:"Your material", note:"", kind:"passage" };
+  S.items = parts.map(t => ({ text:t, en:"", tags: detectTags(t) }));
   S.current = -1; S.attempts = {}; S.modelFiles = {}; S.checked = {};
   $("setTitle").textContent = "Your material";
   $("setNote").textContent = parts.length + " phrases, sounds tagged automatically";
   $("copyLink").style.display = "none";
   try { history.replaceState(null,"",location.pathname); } catch(e){}
-  msg.className = "msg";
-  msg.textContent = "Loaded " + parts.length + " phrases.";
+  msg.className = "msg"; msg.textContent = "Loaded " + parts.length + " phrases.";
   renderSets(); renderList();
-  const st2 = $("stage");
-  if (st2 && st2.scrollIntoView) st2.scrollIntoView({behavior:"smooth", block:"start"});
+  const st = $("stage"); if (st && st.scrollIntoView) st.scrollIntoView({behavior:"smooth", block:"start"});
 }
 $("useOwn").onclick = loadOwn;
 
 /* ============================================================
-   11. WIRE UP
+   12. WIRE UP
 ============================================================ */
 $("modes").querySelectorAll(".mode").forEach(b => {
   b.onclick = () => {
     S.mode = b.dataset.mode;
-    $("modes").querySelectorAll(".mode").forEach(x =>
-      x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    $("modes").querySelectorAll(".mode").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
     $("gapslack").disabled = (S.mode !== "gap");
   };
 });
 $("speed").oninput = e => { $("speedV").textContent = e.target.value + "%"; };
 $("reps").oninput  = e => { $("repsV").textContent  = e.target.value; };
+$("showEn").onchange = e => { S.showEn = e.target.checked; renderList(); };
+
+$("advSwitch").onclick = () => {
+  S.advance = S.advance === "manual" ? "auto" : "manual";
+  const auto = S.advance === "auto";
+  $("advSwitch").setAttribute("aria-checked", auto ? "true" : "false");
+  $("lblManual").classList.toggle("on", !auto);
+  $("lblAuto").classList.toggle("on", auto);
+  if (auto && nextResolve) doNext();
+};
+
 $("run").onclick = runAll;
+$("next").onclick = doNext;
 $("stop").onclick = stopRun;
-
-document.addEventListener("keydown", e => {
-  if (e.target.matches("input,textarea,select")) return;
-  if (e.code === "Space"){ e.preventDefault(); S.running ? stopRun() : runAll(); }
-});
-
 $("diagBtn").onclick = diagnose;
 
-/* ---- first run intro, remembered per browser ---- */
-(function intro(){
-  let seen = false;
-  try { seen = localStorage.getItem("spa_intro_seen") === "1"; } catch(e){}
-  if (!seen) $("intro").style.display = "";
-  $("introClose").onclick = () => {
-    $("intro").style.display = "none";
-    try { localStorage.setItem("spa_intro_seen","1"); } catch(e){}
-  };
-})();
-
-/* ---- a link per set, so one passage can be set as homework ---- */
 $("copyLink").onclick = async () => {
   const id = S.setId;
   if (id === "__own"){
@@ -1530,22 +1415,27 @@ $("copyLink").onclick = async () => {
     return;
   }
   const url = location.origin + location.pathname + "#" + id;
-  try {
-    await navigator.clipboard.writeText(url);
-    $("copyLink").textContent = "Link copied";
-  } catch(e){
-    $("copyLink").textContent = "Copy failed — the link is " + url;
-  }
+  try { await navigator.clipboard.writeText(url); $("copyLink").textContent = "Link copied"; }
+  catch(e){ $("copyLink").textContent = "Copy failed — " + url; }
   setTimeout(() => { $("copyLink").textContent = "Copy link to this set"; }, 2400);
 };
 
-/* ---- open whichever set the address names ---- */
 function fromHash(noScroll){
   const id = (location.hash || "").slice(1).trim();
   if (id && SETS.some(s => s.id === id)){ loadSet(id, false, noScroll); return true; }
   return false;
 }
 window.addEventListener("hashchange", () => fromHash(false));
+
+document.addEventListener("keydown", e => {
+  if (e.target.matches("input,textarea,select")) return;
+  if (e.code === "Space"){
+    e.preventDefault();
+    if (nextResolve) doNext();
+    else if (S.running) stopRun();
+    else runAll();
+  }
+});
 
 /* iOS drops any utterance not started by a tap, but only until the first
    one succeeds. Prime it silently on the first interaction. */
@@ -1554,36 +1444,21 @@ window.addEventListener("hashchange", () => fromHash(false));
   let primed = false;
   const go = () => {
     if (primed) return; primed = true;
-    try {
-      const u = new SpeechSynthesisUtterance(" ");
-      u.volume = 0;
-      speechSynthesis.speak(u);
-    } catch(e){}
+    try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); } catch(e){}
     document.removeEventListener("pointerdown", go);
     document.removeEventListener("keydown", go);
   };
-  document.addEventListener("pointerdown", go, { once:false });
-  document.addEventListener("keydown", go, { once:false });
+  document.addEventListener("pointerdown", go);
+  document.addEventListener("keydown", go);
 })();
 
 micBadge();
 (function startupCheck(){
   const e = env();
-  if (IS_IOS){
-    $("b-mic").textContent = "No recording on iOS";
-    $("b-mic").className = "badge warn";
-    S.micOk = false;
-    flash("warn", micRemedy("ios"));
-    return;
-  }
-  if (!micSupported()){ micBlockedNotice("unsupported"); return; }
-  // Say so before they press Record, rather than letting it fail silently.
-  if (e.framed || e.isFile){
-    $("b-mic").textContent = "Recording blocked here";
-    $("b-mic").className = "badge warn";
-    S.micOk = false;
-    flash("warn", micRemedy(null));
-  }
+  if (IS_IOS){ S.micOk = false; flash("warn", micRemedy("ios")); return; }
+  if (!micSupported()){ flash("warn", micRemedy("unsupported")); return; }
+  if (e.framed){ S.micOk = false; micBadge(); flash("warn", micRemedy("framed")); return; }
+  if (e.isFile){ S.micOk = false; micBadge(); flash("warn", micRemedy("file")); }
 })();
 
 renderSets(); renderList();
