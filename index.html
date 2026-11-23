@@ -945,15 +945,43 @@ function renderList(){
     br.onclick = () => recordTurn(i, br);
     acts.appendChild(br);
 
-    if (S.attempts[i]){
-      const bc = document.createElement("button");
-      bc.className = "btn good"; bc.textContent = "⇄ Compare";
-      bc.onclick = () => compare(i);
-      acts.appendChild(bc);
+    const hasAttempt = !!S.attempts[i];
+
+    // Always visible, so the sequence Listen, Record, Compare reads the same
+    // everywhere. On iOS it is the only route to Compare, since nothing here
+    // can record.
+    const bc = document.createElement("button");
+    bc.className = "btn" + (hasAttempt ? " good" : "");
+    bc.textContent = "⇄ Compare";
+    bc.onclick = () => {
+      if (S.attempts[i]){ compare(i); return; }
+      flash("warn", IS_IOS
+        ? "<b>Nothing to compare on this phrase yet.</b> An iPhone or iPad cannot record inside the page, so record yourself in <b>Voice Memos</b>, then bring the clip in with <b>Attach clip</b> on this phrase. Compare will then play the model, your clip, and the model again."
+        : "<b>Nothing to compare on this phrase yet.</b> Press <b>Record me</b> first, or attach a clip from the <b>⋯</b> menu. Compare then plays the model, you, and the model again.");
+    };
+    acts.appendChild(bc);
+
+    if (hasAttempt){
       const bj = document.createElement("button");
       bj.className = "btn"; bj.textContent = "Just me";
       bj.onclick = () => { const a = new Audio(S.attempts[i].url); a.play().catch(()=>{}); };
       acts.appendChild(bj);
+    }
+
+    if (IS_IOS){
+      const la = document.createElement("label");
+      la.className = "btn"; la.style.cursor = "pointer";
+      la.textContent = hasAttempt ? "⤒ Replace clip" : "⤒ Attach clip";
+      const fa = document.createElement("input");
+      fa.type = "file"; fa.accept = "audio/*"; fa.className = "vis-hidden";
+      fa.onchange = async () => {
+        const f = fa.files && fa.files[0]; if (!f) return;
+        const a = await analyse(f);
+        S.attempts[i] = { url:URL.createObjectURL(f), a, modelSecs:null };
+        renderList();
+      };
+      la.appendChild(fa);
+      acts.appendChild(la);
     }
 
     const kb = document.createElement("span"); kb.className = "kebab";
