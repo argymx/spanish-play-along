@@ -339,7 +339,7 @@
     <summary>If recording does not work</summary>
     <div class="inner2">
       <p>Press <b>Test microphone</b> at the top. It runs a full check and names the problem.</p>
-      <p>On an <b>iPhone or iPad</b>, recording cannot work at all. Safari mutes the microphone the moment the page speaks, and every browser on iOS uses Safari underneath. Everything else works there, so speak into the gaps aloud, or attach a Voice Memos clip from a phrase's <b>⋯</b> menu.</p>
+      <p>On an <b>iPhone or iPad</b> there is a Safari fault: it mutes a microphone that is already open as soon as the page speaks, and the track can never be unmuted. This page works around it by taking a fresh microphone after the model has finished rather than holding one open. Whether that is enough depends on your iOS version, so run <b>Test microphone</b>, which speaks and then records to check the exact case that fails. If it still comes back silent, record in Voice Memos and use <b>Attach clip</b> on the phrase.</p>
       <p>Elsewhere the usual causes are a page opened straight from disk with a <code>file://</code> address, a page inside an embedded frame, or a permission already set to denied, in which case the browser never prompts again. A desktop Mac also has no microphone of its own.</p>
     </div>
   </details>
@@ -598,7 +598,7 @@ const S = {
   setId:SETS[0].id, meta:SETS[0], items:SETS[0].items.slice(),
   mode:"gap", advance:"manual", showEn:true,
   current:-1, running:false, abort:false,
-  voices:[], voice:null, micOk:null, micErr:null, stream:null,
+  voices:[], voice:null, micOk:null, micErr:null, stream:null, streamStale:false,
   attempts:{}, modelFiles:{}, checked:{}
 };
 const $ = id => document.getElementById(id);
@@ -743,7 +743,6 @@ const micSupported = () => !!(navigator.mediaDevices && navigator.mediaDevices.g
 
 function micBadge(){
   const b = $("b-mic");
-  if (IS_IOS){ b.textContent = "No recording on iOS"; b.className = "badge warn"; return; }
   if (!micSupported()){ b.textContent = "Recording unavailable"; b.className = "badge off"; return; }
   if (S.micOk === true){ b.textContent = "Microphone ready"; b.className = "badge"; }
   else if (S.micOk === false){ b.textContent = "Microphone blocked"; b.className = "badge warn"; }
@@ -755,8 +754,12 @@ function micRemedy(errName){
   const serve = "Serve the folder from a local web server instead: open Terminal or Command Prompt, go to the folder and run <code>python3 -m http.server 8765</code>, then visit <code>http://localhost:8765/</code>.";
 
   if (errName === "ios")
-    return "<b>On an iPhone or iPad, recording cannot be used.</b> Safari mutes the microphone the moment the page speaks, and nothing in the page can unmute it. Every browser on iOS uses Safari underneath, so switching browser changes nothing." +
-      "<br><br><b>Use it this way instead:</b> listen, repeat into the gaps out loud, and work through the drills. That is most of the value and all of it works. For record and compare, use a computer or an Android phone, or record in Voice Memos and attach the clip from a phrase's <b>⋯</b> menu.";
+    return "<b>Recording on an iPhone or iPad is working around a Safari fault.</b> Safari mutes a microphone that is already open as soon as the page speaks, so this page now takes a fresh microphone after the model has finished rather than holding one open. " +
+      "Press <b>Test microphone</b> to check whether that works on your device: it speaks first and then records, which is exactly the case that fails." +
+      "<br><br>If the test comes back silent, use it this way instead: listen, repeat into the gaps out loud, and work through the drills, which all work. For compare, record in Voice Memos and attach the clip with <b>Attach clip</b> on the phrase.";
+  if (errName === "ios-muted")
+    return "<b>Safari muted the microphone even after taking a fresh one.</b> This is the known iOS fault and there is nothing further the page can do about it. " +
+      "Listening, the gaps, the repeats and the drills all work normally. For compare, record yourself in <b>Voice Memos</b> and bring the clip in with <b>Attach clip</b> on the phrase. A computer or an Android phone records properly.";
   if (errName === "framed")
     return "<b>Recording cannot work on an embedded copy of this page.</b> It is inside a frame, which browsers refuse microphone permission to. Open the page at its own address instead.";
   if (errName === "denied-sticky")
@@ -774,14 +777,50 @@ function micRemedy(errName){
   return "<b>The microphone could not be started</b> (" + (errName || "unknown") + ").";
 }
 
+/* Safari mutes an open microphone track the moment the page speaks, and the
+   track can never be unmuted. Watch for it so we know to take a fresh one. */
+function watchTrack(){
+  const t = S.stream && S.stream.getAudioTracks()[0];
+  if (!t) return;
+  t.onmute  = () => { S.streamStale = true; };
+  t.onended = () => { S.streamStale = true; };
+}
+
+/* Drop the current microphone and take a new one. */
+async function freshMic(){
+  try { if (S.stream) S.stream.getTracks().forEach(t => t.stop()); } catch(e){}
+  S.stream = null; S.streamStale = false;
+  try {
+    S.stream = await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true, autoGainControl:true }});
+    watchTrack();
+    S.micOk = true; S.micErr = null; micBadge();
+    return true;
+  } catch(e){
+    S.micOk = false; S.micErr = (e && e.name) || "unknown"; micBadge();
+    return false;
+  }
+}
+
+/* Called right before recording. On iOS always take a fresh track, because
+   the model has just spoken and the old one is muted. */
+async function prepareMic(){
+  if (!S.stream) return await ensureMic(true);
+  const t = S.stream.getAudioTracks()[0];
+  const bad = !t || t.readyState !== "live" || t.muted || S.streamStale;
+  if (IS_IOS || bad){
+    if (IS_IOS) await sleep(260);   // speech keeps ducking briefly after it ends
+    return await freshMic();
+  }
+  return true;
+}
+
 async function ensureMic(quiet){
   const show = m => { if (!quiet) flash("warn", micRemedy(m)); };
-  if (IS_IOS){ S.micOk = false; S.micErr = "ios"; micBadge(); show("ios"); return false; }
   if (!micSupported()){ S.micOk = false; S.micErr = "unsupported"; micBadge(); show("unsupported"); return false; }
   if (env().framed){ S.micOk = false; S.micErr = "framed"; micBadge(); show("framed"); return false; }
   if (S.stream){
     const t = S.stream.getAudioTracks()[0];
-    if (t && t.readyState === "live") return true;
+    if (t && t.readyState === "live" && !t.muted && !S.streamStale) return true;
     S.stream = null;
   }
   try {
@@ -798,6 +837,8 @@ async function ensureMic(quiet){
   } catch(e){}
   try {
     S.stream = await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true, autoGainControl:true }});
+    watchTrack();
+    S.streamStale = false;
     S.micOk = true; S.micErr = null; micBadge(); return true;
   } catch(e){
     S.micOk = false; S.micErr = (e && e.name) || "unknown"; micBadge(); show(S.micErr); return false;
@@ -1139,6 +1180,13 @@ async function doPhrase(i, withRec){
 
     const gap = Math.max(900, Math.round(dur*slack()));
     const last = r === reps()-1;
+
+    // The model has just spoken, which on iOS mutes any open microphone.
+    if (withRec){
+      cue("Getting ready","listen","",null);
+      await prepareMic();
+      if (S.abort) return;
+    }
     cue("Your turn","turn", tag, gap);
 
     if (withRec && S.stream){
@@ -1197,6 +1245,7 @@ function finishRun(withRec){
 async function recordTurn(i, btn){
   if (S.running) return;
   if (!await ensureMic()) return;
+  if (!await prepareMic()) return;
   const old = btn.textContent;
   btn.textContent = "Recording…"; btn.disabled = true;
   let est = 0;
@@ -1292,36 +1341,62 @@ async function diagnose(){
     $("diag").style.display = "block";
   };
 
-  out.push(""); out.push("LIVE TEST — recording 1.5 seconds…");
+  out.push("");
+  out.push("Say something out loud while each test runs.");
+  out.push("");
+  out.push("TEST 1 — record 1.5 seconds…");
   render("", "");
 
-  if (IS_IOS){ render("NOT AVAILABLE on iPhone or iPad.", micRemedy("ios")); micBadge(); return; }
-
+  let stage1 = null;
   try {
     const ok = await ensureMic(true);
     if (!ok){ render("BLOCKED.", micRemedy(S.micErr)); return; }
     const tr = S.stream.getAudioTracks()[0];
     L("microphone in use", tr ? (tr.label || "(unnamed)") : "none");
-    L("track state", tr ? tr.readyState + (tr.muted ? "  but MUTED" : "") : "n/a");
+    L("track state", tr ? tr.readyState + (tr.muted ? "  but MUTED" : "  live") : "n/a");
     const blob = await recordFor(1500);
-    L("recording produced", blob ? (blob.size + " bytes") : "NOTHING");
-    if (blob && blob.size){
-      const a = await analyse(blob);
-      if (a){
-        L("decoded length", a.duration.toFixed(2) + " s");
-        L("sound detected in", Math.round(a.coverage*100) + "% of it");
-        render(a.silent
-          ? "WORKING, but silent. It opened and recorded, yet no sound came through. Check the right input is selected and not muted."
-          : "WORKING. Record me will work on this page.", "");
-      } else {
-        render("Recorded " + blob.size + " bytes but this browser could not decode them, so timing feedback will be blank.", "");
-      }
+    L("test 1 produced", blob ? (blob.size + " bytes") : "NOTHING");
+    stage1 = (blob && blob.size) ? await analyse(blob) : null;
+    if (stage1) L("test 1 sound in", Math.round(stage1.coverage*100) + "% of it");
+  } catch(x){
+    L("TEST 1 FAILED", (x && x.name) || "unknown");
+    render("BLOCKED.", micRemedy((x && x.name) || "unknown"));
+    return;
+  }
+
+  if (!stage1){
+    render("The microphone opened but produced nothing this browser could decode.", "");
+    return;
+  }
+  if (stage1.silent){
+    render("The microphone opened and recorded, but no sound came through. Check the right input is selected and unmuted, then run the test again and speak during it.", "");
+    return;
+  }
+
+  /* The real sequence: speak, then record. This is the case that fails on iOS. */
+  out.push("");
+  out.push("TEST 2 — speak first, then record (the case that fails on iOS)…");
+  render("", "");
+  try {
+    await speak("Uno, dos, tres.", 1);
+    await prepareMic();
+    const tr2 = S.stream && S.stream.getAudioTracks()[0];
+    L("track after speaking", tr2 ? (tr2.readyState + (tr2.muted ? "  MUTED" : "  live")) : "none");
+    const b2 = await recordFor(1500);
+    L("test 2 produced", b2 ? (b2.size + " bytes") : "NOTHING");
+    const a2 = (b2 && b2.size) ? await analyse(b2) : null;
+    if (a2) L("test 2 sound in", Math.round(a2.coverage*100) + "% of it");
+
+    if (a2 && !a2.silent){
+      render("WORKING. The microphone survived the model speaking, so Record me and Compare both work here.", "");
+    } else if (IS_IOS){
+      render("PARTLY WORKING. Recording on its own is fine, but it goes silent once the page has spoken, even after taking a fresh microphone. This is the known Safari fault.", micRemedy("ios-muted"));
     } else {
-      render("The microphone opened but produced no audio. Try a different browser or input device.", "");
+      render("PARTLY WORKING. Recording on its own is fine, but it went silent after the page spoke. Try another browser, and make sure you speak aloud during the test.", "");
     }
   } catch(x){
-    L("LIVE TEST FAILED", (x && x.name) || "unknown");
-    render("BLOCKED.", micRemedy((x && x.name) || "unknown"));
+    L("TEST 2 FAILED", (x && x.name) || "unknown");
+    render("Recording works on its own, but the test after speaking failed.", micRemedy((x && x.name) || "unknown"));
   }
 }
 
@@ -1483,8 +1558,8 @@ document.addEventListener("keydown", e => {
 micBadge();
 (function startupCheck(){
   const e = env();
-  if (IS_IOS){ S.micOk = false; flash("warn", micRemedy("ios")); return; }
   if (!micSupported()){ flash("warn", micRemedy("unsupported")); return; }
+  if (IS_IOS){ flash("warn", micRemedy("ios")); return; }
   if (e.framed){ S.micOk = false; micBadge(); flash("warn", micRemedy("framed")); return; }
   if (e.isFile){ S.micOk = false; micBadge(); flash("warn", micRemedy("file")); }
 })();
